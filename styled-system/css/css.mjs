@@ -273,7 +273,8 @@ const classNameMap = {
   "maskImage": "mask-image",
   "maskSize": "mask-size",
   "textSizeAdjust": "text-size-adjust",
-  "textStyle": "textStyle"
+  "textStyle": "textStyle",
+  "layerStyle": "layerStyle"
 }
 
 const shorthands = {

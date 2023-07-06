@@ -624,29 +624,7 @@ type PropertyValueTypes = {
   stroke: Tokens["colors"];
   srOnly: boolean;
   debug: boolean;
-  colorPalette:
-    | "rose"
-    | "pink"
-    | "fuchsia"
-    | "purple"
-    | "violet"
-    | "indigo"
-    | "blue"
-    | "sky"
-    | "cyan"
-    | "teal"
-    | "emerald"
-    | "green"
-    | "lime"
-    | "yellow"
-    | "amber"
-    | "orange"
-    | "red"
-    | "neutral"
-    | "stone"
-    | "zinc"
-    | "gray"
-    | "slate";
+  colorPalette: string;
   textStyle:
     | "xs"
     | "sm"
@@ -660,7 +638,14 @@ type PropertyValueTypes = {
     | "6xl"
     | "7xl"
     | "8xl"
-    | "9xl";
+    | "9xl"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "bodyLg"
+    | "bodySm"
+    | "button";
+  layerStyle: "button";
 };
 
 type CssValue<T> = T extends keyof CssProperties ? CssProperties[T] : never;

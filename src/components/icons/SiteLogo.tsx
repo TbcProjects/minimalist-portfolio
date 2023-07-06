@@ -13,8 +13,8 @@ export default function SiteLogo(props: BoxProps) {
       >
         <path
           id="Combined Shape"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M31.3469 26.1224L15.6735 0L0 26.1224H31.3469ZM60.0816 5.87755L44.4082 32L28.7347 5.87755H60.0816Z"
           fill="#33323D"
         />

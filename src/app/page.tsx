@@ -1,5 +1,6 @@
 import { gql } from "graphql-request";
 import { datoClient } from "@/lib/datoCMS/client";
+import { Button } from "@/lib/theme/components/button";
 
 const query = gql`
   query MyQuery {
@@ -16,7 +17,11 @@ const query = gql`
 `;
 
 export default async function Home() {
-  const data = await datoClient(query);
+  // const data = await datoClient(query);
 
-  return <div>Page</div>;
+  return (
+    <div>
+      <Button variant="primary">Click me</Button>
+    </div>
+  );
 }

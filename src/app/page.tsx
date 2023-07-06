@@ -1,11 +1,6 @@
 import { gql } from "graphql-request";
 import { datoClient } from "@/lib/datoCMS/client";
 
-import HomePageContainer from "@/components/containers/HomePageContainer";
-import Hero from "@/components/sections/Hero";
-import AboutMe from "@/components/sections/AboutMe";
-import ContactBanner from "@/components/sections/ContactBanner";
-
 const query = gql`
   query MyQuery {
     homepage {
@@ -23,11 +18,5 @@ const query = gql`
 export default async function Home() {
   const data = await datoClient(query);
 
-  return (
-    <HomePageContainer as={"main"}>
-      <Hero data={data} />
-      <AboutMe />
-      <ContactBanner />
-    </HomePageContainer>
-  );
+  return <div>Page</div>;
 }

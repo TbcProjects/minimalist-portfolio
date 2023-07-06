@@ -1,9 +1,6 @@
-import { Box } from "@chakra-ui/react";
-import type { BoxProps } from "@chakra-ui/react";
-
-export default function SiteLogo(props: BoxProps) {
+export default function SiteLogo() {
   return (
-    <Box {...props}>
+    <div>
       <svg
         width="61"
         height="32"
@@ -19,6 +16,6 @@ export default function SiteLogo(props: BoxProps) {
           fill="#33323D"
         />
       </svg>
-    </Box>
+    </div>
   );
 }

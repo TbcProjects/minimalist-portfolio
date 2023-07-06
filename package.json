@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "prepare-panda": "panda codegen"
+    "panda-prepare": "panda codegen",
+    "panda-clean": "panda codegen --clean"
   },
   "dependencies": {
     "@types/node": "20.3.3",

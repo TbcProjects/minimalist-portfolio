@@ -1,4 +1,16 @@
-import "./global.css";
+import "../lib/theme/global.css";
+
+import { Ibarra_Real_Nova, Public_Sans } from "next/font/google";
+
+const IbarraRealNova = Ibarra_Real_Nova({
+  subsets: ["latin"],
+  variable: "--font-ibrarra-real-nova",
+});
+
+const PublicSans = Public_Sans({
+  subsets: ["latin"],
+  variable: "--font-public-sans",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +23,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${IbarraRealNova.variable} ${PublicSans.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

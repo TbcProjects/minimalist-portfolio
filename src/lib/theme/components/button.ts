@@ -1,6 +1,6 @@
-import { styled } from "../../../../styled-system/jsx";
+import { cva } from "../../../../styled-system/css";
 
-export const Button = styled("button", {
+export const button = cva({
   base: {
     py: "17px",
     px: "34px",

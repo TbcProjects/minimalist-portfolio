@@ -5,6 +5,7 @@ import { css } from '../../../../styled-system/css';
 import ArrowDownIcon from '@/components/icons/ArrowDownIcon';
 
 import { button, ButtonVariants } from '@/lib/theme/components/button';
+import { isNullableType } from 'graphql';
 
 type ButtonLinkProps = ButtonVariants & {
   children: ReactNode;
@@ -21,26 +22,28 @@ export default function ButtonLink({
       href={href}
       className={`${button({ variant: variant })} ${css({
         display: 'flex',
+        h: '100%',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        textAlign: 'center',
       })}`}
     >
-      <span
-        className={css({
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          w: '48px',
-          h: '100%',
-        })}
-      >
-        <ArrowDownIcon />
-      </span>
+      {variant === 'primary' ? (
+        <span
+          className={css({
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            w: '48px',
+            h: '100%',
+          })}
+        >
+          <ArrowDownIcon />
+        </span>
+      ) : null}
       <div
         className={css({
-          display: 'flex',
           flex: '1 1 auto',
-          h: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
         })}
       >
         {children}

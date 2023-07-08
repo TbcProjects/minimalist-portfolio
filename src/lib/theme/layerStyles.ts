@@ -20,4 +20,16 @@ export const layerStyles: LayerStyle = defineLayerStyles({
       },
     },
   },
+  secondaryButton: {
+    value: {
+      color: 'black',
+      background: 'white',
+      border: '1px solid #33323D',
+      _hover: {
+        color: 'white',
+        background: 'greyDarkBlue',
+        border: 'none',
+      },
+    },
+  },
 });

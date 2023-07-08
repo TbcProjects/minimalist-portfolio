@@ -13,6 +13,9 @@ export default function Hero({ data }: HeroProps) {
       <ButtonLink href={'/'} variant="primary">
         Click me
       </ButtonLink>
+      <ButtonLink href={'/'} variant="secondary">
+        Click me
+      </ButtonLink>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </Box>
   );

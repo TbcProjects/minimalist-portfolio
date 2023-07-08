@@ -6,4 +6,4 @@ import type { HTMLStyledProps } from '../types/jsx';
 export type ContainerProps = ContainerProperties &
   Omit<HTMLStyledProps<'div'>, keyof ContainerProperties>;
 
-export declare const Container: FunctionComponent<ContainerProps, ops>;
+export declare const Container: FunctionComponent<ContainerProps>;

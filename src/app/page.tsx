@@ -1,8 +1,14 @@
 import { gql } from "graphql-request";
 import { datoClient } from "@/lib/datocms/client";
-import Button from "../components/shared/Button";
 
 import { css } from "../../styled-system/css";
+
+// section components
+import Hero from "@/components/sections/Hero";
+import AboutMe from "@/components/sections/AboutMe";
+import ContactBanner from "@/components/sections/ContactBanner";
+
+import { Container } from "../../styled-system/jsx";
 
 const query = gql`
   query MyQuery {
@@ -20,13 +26,13 @@ const query = gql`
 
 export default async function Home() {
   const data = await datoClient(query);
-  console.log(data);
 
   return (
-    <div>
+    <Container maxW={"breakpoint-lg"}>
       <h1 className={css({ textStyle: "h1", color: "cyan" })}>Hello</h1>
-      <Button>Click me</Button>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+      <Hero data={data} />
+      <AboutMe />
+      <ContactBanner />
+    </Container>
   );
 }

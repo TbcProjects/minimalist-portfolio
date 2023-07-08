@@ -5,13 +5,11 @@ export const button = cva({
     height: '48px',
     cursor: 'pointer',
     textStyle: 'button',
-    maxW: '200px',
   },
   variants: {
     variant: {
       primary: {
         layerStyle: 'primaryButton',
-        maxW: '200px',
       },
       secondary: {
         layerStyle: 'secondaryButton',

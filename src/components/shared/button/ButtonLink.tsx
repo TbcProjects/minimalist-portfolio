@@ -1,43 +1,50 @@
-import { ReactNode } from "react";
-import { css } from "../../../../styled-system/css";
+import { ReactNode } from 'react';
+import Link from 'next/link';
+import { css } from '../../../../styled-system/css';
 
-import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
+import ArrowDownIcon from '@/components/icons/ArrowDownIcon';
 
-import { button, ButtonVariants } from "@/lib/theme/components/button";
+import { button, ButtonVariants } from '@/lib/theme/components/button';
 
 type ButtonLinkProps = ButtonVariants & {
   children: ReactNode;
+  href: string;
 };
 
-export default function ButtonLink(props: ButtonLinkProps) {
-  const { variant, children } = props;
-
+export default function ButtonLink({
+  variant,
+  children,
+  href,
+}: ButtonLinkProps) {
   return (
-    <button
-      className={`${button({ variant: variant })} ${css({ display: "flex" })}`}
+    <Link
+      href={href}
+      className={`${button({ variant: variant })} ${css({
+        display: 'flex',
+      })}`}
     >
       <span
         className={css({
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          w: "48px",
-          h: "100%",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          w: '48px',
+          h: '100%',
         })}
       >
         <ArrowDownIcon />
       </span>
       <div
         className={css({
-          display: "flex",
-          h: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-          flex: "1 1 auto",
+          display: 'flex',
+          flex: '1 1 auto',
+          h: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
         })}
       >
         {children}
       </div>
-    </button>
+    </Link>
   );
 }

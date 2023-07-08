@@ -645,7 +645,7 @@ type PropertyValueTypes = {
     | "bodyLg"
     | "bodySm"
     | "button";
-  layerStyle: "button";
+  layerStyle: "primaryButton";
 };
 
 type CssValue<T> = T extends keyof CssProperties ? CssProperties[T] : never;

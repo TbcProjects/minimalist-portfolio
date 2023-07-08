@@ -1,6 +1,9 @@
 /* eslint-disable */
 export type Token =
   | "colors.cyan"
+  | "colors.pine"
+  | "colors.yankee_blue"
+  | "colors.japanese_indigo"
   | "colors.darkBlue"
   | "colors.greyDarkBlue"
   | "colors.lightGrey"
@@ -21,6 +24,9 @@ export type Token =
 
 export type ColorToken =
   | "cyan"
+  | "pine"
+  | "yankee_blue"
+  | "japanese_indigo"
   | "darkBlue"
   | "greyDarkBlue"
   | "lightGrey"

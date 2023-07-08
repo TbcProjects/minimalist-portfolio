@@ -3,6 +3,18 @@ const tokens = {
     "value": "#5FB4A2",
     "variable": "var(--colors-cyan)"
   },
+  "colors.pine": {
+    "value": "#55A292",
+    "variable": "var(--colors-pine)"
+  },
+  "colors.yankee_blue": {
+    "value": "#1D3444",
+    "variable": "var(--colors-yankee_blue)"
+  },
+  "colors.japanese_indigo": {
+    "value": "#203A4C",
+    "variable": "var(--colors-japanese_indigo)"
+  },
   "colors.darkBlue": {
     "value": "#203A4C",
     "variable": "var(--colors-dark-blue)"

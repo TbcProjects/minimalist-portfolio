@@ -1,14 +1,19 @@
+// @ts-nocheck
 import { defineLayerStyles } from "@pandacss/dev";
 
-export const layerStyles = defineLayerStyles({
-  button: {
+export const layerStyles: LayerStyle = defineLayerStyles({
+  primaryButton: {
     value: {
-      background: "v",
-      color: " #33323D",
-      border: "1px solid #33323D",
+      color: "#FFF",
+      background: "japanese_indigo",
       _hover: {
-        background: "#33323D",
-        color: "#FFF",
+        background: "cyan",
+        "& span": {
+          background: "cyan",
+        },
+        "& svg path": {
+          stroke: "white",
+        },
       },
     },
   },

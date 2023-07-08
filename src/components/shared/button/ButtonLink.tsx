@@ -5,7 +5,6 @@ import { css } from '../../../../styled-system/css';
 import ArrowDownIcon from '@/components/icons/ArrowDownIcon';
 
 import { button, ButtonVariants } from '@/lib/theme/components/button';
-import { isNullableType } from 'graphql';
 
 type ButtonLinkProps = ButtonVariants & {
   children: ReactNode;
@@ -21,7 +20,7 @@ export default function ButtonLink({
     <Link
       href={href}
       className={`${button({ variant: variant })} ${css({
-        display: 'flex',
+        display: 'inline-flex',
         h: '100%',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -44,6 +43,7 @@ export default function ButtonLink({
       <div
         className={css({
           flex: '1 1 auto',
+          padding: '0 38px',
         })}
       >
         {children}

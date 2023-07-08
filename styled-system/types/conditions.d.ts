@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { AnySelector, Selectors } from "./selectors";
+import type { AnySelector, Selectors } from './selectors';
 
 export type Conditions = {
   _hover: string;
@@ -101,8 +101,8 @@ export type Conditions = {
   xl: string;
   xlOnly: string;
   xlDown: string;
-  "2xl": string;
-  "2xlOnly": string;
+  '2xl': string;
+  '2xlOnly': string;
   smToMd: string;
   smToLg: string;
   smToXl: string;

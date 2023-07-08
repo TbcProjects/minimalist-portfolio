@@ -1,6 +1,6 @@
 /* eslint-disable */
-import type { CssProperty, SystemStyleObject } from "./system-types";
-import type { TokenCategory } from "../tokens";
+import type { CssProperty, SystemStyleObject } from './system-types';
+import type { TokenCategory } from '../tokens';
 
 type Primitive = string | number | boolean | null | undefined;
 type LiteralUnion<T, K extends Primitive = string> =
@@ -8,10 +8,10 @@ type LiteralUnion<T, K extends Primitive = string> =
   | (K & Record<never, never>);
 
 export type PatternProperty =
-  | { type: "property"; value: CssProperty }
-  | { type: "enum"; value: string[] }
-  | { type: "token"; value: TokenCategory; property?: CssProperty }
-  | { type: "string" | "boolean" | "number" };
+  | { type: 'property'; value: CssProperty }
+  | { type: 'enum'; value: string[] }
+  | { type: 'token'; value: TokenCategory; property?: CssProperty }
+  | { type: 'string' | 'boolean' | 'number' };
 
 export type PatternHelpers = {
   map: (value: any, fn: (value: string) => string | undefined) => any;

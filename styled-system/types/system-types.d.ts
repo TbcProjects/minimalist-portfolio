@@ -1,7 +1,7 @@
 /* eslint-disable */
-import type { ConditionalValue, Conditions, Nested } from "./conditions";
-import type { PropertiesFallback } from "./csstype";
-import type { SystemProperties, CssVarProperties } from "./style-props";
+import type { ConditionalValue, Conditions, Nested } from './conditions';
+import type { PropertiesFallback } from './csstype';
+import type { SystemProperties, CssVarProperties } from './style-props';
 
 type String = string & {};
 type Number = number & {};
@@ -66,18 +66,18 @@ export type PatchedHTMLProps = {
   htmlSize?: string | number;
   htmlWidth?: string | number;
   htmlHeight?: string | number;
-  htmlTranslate?: "yes" | "no" | undefined;
+  htmlTranslate?: 'yes' | 'no' | undefined;
   htmlContent?: string;
 };
 
 export type OmittedHTMLProps =
-  | "color"
-  | "translate"
-  | "transition"
-  | "width"
-  | "height"
-  | "size"
-  | "content";
+  | 'color'
+  | 'translate'
+  | 'transition'
+  | 'width'
+  | 'height'
+  | 'size'
+  | 'content';
 
 type WithHTMLProps<T> = Omit<T, OmittedHTMLProps> & PatchedHTMLProps;
 

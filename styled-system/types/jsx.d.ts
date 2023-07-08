@@ -1,11 +1,11 @@
 /* eslint-disable */
-import type { ComponentProps, ElementType } from "react";
-import type { Assign, JsxStyleProps, JsxHTMLProps } from "./system-types";
+import type { ComponentProps, ElementType } from 'react';
+import type { Assign, JsxStyleProps, JsxHTMLProps } from './system-types';
 import type {
   RecipeDefinition,
   RecipeSelection,
   RecipeVariantRecord,
-} from "./recipe";
+} from './recipe';
 
 type Dict = Record<string, unknown>;
 
@@ -27,7 +27,7 @@ interface JsxFactory {
   <T extends ElementType, P extends RecipeFn>(
     component: T,
     recipeFn: P
-  ): StyledComponent<T, P["__type"]>;
+  ): StyledComponent<T, P['__type']>;
 }
 
 type JsxElements = {

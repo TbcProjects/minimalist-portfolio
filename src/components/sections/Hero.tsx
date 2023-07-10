@@ -1,6 +1,7 @@
-import SiteLogo from '../icons/SiteLogo';
-import ButtonLink from '../shared/button/ButtonLink';
-import { Box } from '../../../styled-system/jsx';
+import Image from 'next/image';
+
+import { css } from '../../../styled-system/css';
+import { container } from '../../../styled-system/patterns';
 
 interface HeroProps {
   data: any;
@@ -8,15 +9,20 @@ interface HeroProps {
 
 export default function Hero({ data }: HeroProps) {
   return (
-    <Box>
-      <SiteLogo />
-      <ButtonLink href={'/'} variant="primary">
-        Click me
-      </ButtonLink>
-      <ButtonLink href={'/'} variant="secondary">
-        Click me
-      </ButtonLink>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </Box>
+    <div
+      className={container({
+        maxW: 'breakpoint-lg',
+        px: { base: '32px', md: '38px', lg: '0' },
+      })}
+    >
+      <div className={css({ pos: 'relative', minH: '552px', width: '100%' })}>
+        <Image
+          src={'/images/jk-placeholder-image.jpeg'}
+          alt="placeholder image"
+          objectFit="cover"
+          fill={true}
+        />
+      </div>
+    </div>
   );
 }

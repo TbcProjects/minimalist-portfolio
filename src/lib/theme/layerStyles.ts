@@ -32,4 +32,10 @@ export const layerStyles: LayerStyle = defineLayerStyles({
       },
     },
   },
+  darkBlueOnWhite: {
+    value: {
+      background: 'greyDarkBlue',
+      color: 'white',
+    },
+  },
 });

@@ -1,8 +1,8 @@
 import { defineConfig } from "@pandacss/dev";
-import { textStyles } from "@/lib/theme/textStyles";
-import { layerStyles } from "@/lib/theme/layerStyles";
-import { colors } from "@/lib/theme/colors";
-import { fonts } from "@/lib/theme/fonts";
+import { textStyles } from "@lib/theme/textStyles";
+import { layerStyles } from "@lib/theme/layerStyles";
+import { colors } from "@lib/theme/colors";
+import { fonts } from "@lib/theme/fonts";
 
 export default defineConfig({
   // Whether to use css reset

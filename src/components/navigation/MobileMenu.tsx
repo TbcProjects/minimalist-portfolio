@@ -7,7 +7,7 @@ import { Squash as Hamburger } from "hamburger-react";
 
 import { css } from "../../../styled-system/css";
 
-import type { MenuItem } from "@/types/general";
+import type { MenuItem } from "@typesDef/general";
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);

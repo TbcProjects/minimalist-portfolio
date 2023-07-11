@@ -5,7 +5,7 @@ import MenuLink from "./MenuLink";
 import { css } from "../../../styled-system/css";
 import { hstack } from "../../../styled-system/patterns";
 
-import type { MenuItem } from "@/types/general";
+import type { MenuItem } from "@typesDef/general";
 
 interface DeskTopMenuProps {}
 

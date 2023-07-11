@@ -1,7 +1,7 @@
 import "../lib/theme/global.css";
 
-import SiteHeader from "@/components/layout/SiteHeader";
-import SiteFooter from "@/components/layout/SiteFooter";
+import SiteHeader from "@components/layout/SiteHeader";
+import SiteFooter from "@components/layout/SiteFooter";
 
 import { Ibarra_Real_Nova, Public_Sans } from "next/font/google";
 

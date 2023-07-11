@@ -9,7 +9,7 @@ import { container, flex } from "../../../styled-system/patterns";
 import SiteLogo from "../icons/SiteLogo";
 import Social from "../navigation/Social";
 
-import { MenuItem } from "@/types/general";
+import { MenuItem } from "@typesDef/general";
 
 interface SiteFooterProps {}
 

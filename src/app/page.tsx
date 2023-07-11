@@ -12,26 +12,12 @@ import ContactBanner from "@components/sections/ContactBanner";
  * @todo - add head component
  */
 
-const query = gql`
-  query MyQuery {
-    homepage {
-      homepageContent {
-        ... on SectionAboutMeRecord {
-          id
-          buttonLabel
-          buttonLink
-        }
-      }
-    }
-  }
-`;
-
 export default async function Home() {
-  const data = await datoClient(query);
+  // const data = await datoClient(query);
 
   return (
     <>
-      <Hero data={data} />
+      <Hero />
       <AboutMe />
       <ContactBanner />
     </>

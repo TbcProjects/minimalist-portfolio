@@ -6,28 +6,33 @@ import LinkedInIcon from "../icons/social/LinkedInIcon";
 
 import { hstack } from "../../../styled-system/patterns";
 
-interface SocialProps {}
+import { SocialIcon } from "@typesDef/general";
+import type { ISocialContent } from "@app/layout";
 
-export default function Social({}: SocialProps) {
-  const icons = ["TWITTER", "GITHUB", "LINKEDIN"];
+interface SocialProps {
+  socialLinks: NonNullable<ISocialContent>;
+}
 
-  const returnSocialIcon = (iconName: string) => {
+export default function Social({ socialLinks }: SocialProps) {
+  const returnSocialIcon = (iconName: SocialIcon) => {
     switch (iconName) {
-      case "TWITTER":
+      case SocialIcon.TWITTER_ICON:
         return <TwitterIcon />;
-      case "GITHUB":
+      case SocialIcon.GITHUB_ICON:
         return <GithubIcon />;
-      case "LINKEDIN":
+      case SocialIcon.LINKEDIN_ICON:
         return <LinkedInIcon />;
     }
   };
 
   const renderSocialIcon = () => {
-    return icons.map((icon) => {
+    return socialLinks.socialLinks.map((icon) => {
       return (
-        <Link key={icon} href={"/"}>
-          {returnSocialIcon(icon)}
-        </Link>
+        icon && (
+          <Link key={icon._modelApiKey} href={icon?.linkUrl || ""}>
+            {returnSocialIcon(icon.linkIcon as SocialIcon)}
+          </Link>
+        )
       );
     });
   };

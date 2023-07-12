@@ -1984,6 +1984,7 @@ export type ISectionAboutMeRecord = IRecordInterface & {
   buttonLink?: Maybe<Scalars["String"]["output"]>;
   headline?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ItemId"]["output"];
+  image?: Maybe<IFileField>;
   textContent?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -2577,6 +2578,48 @@ export type IFocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
+export type IHomepageQueryVariables = Exact<{ [key: string]: never }>;
+
+export type IHomepageQuery = {
+  __typename?: "Query";
+  homepage?: {
+    __typename?: "HomepageRecord";
+    homepageContent: Array<
+      | {
+          __typename?: "SectionAboutMeRecord";
+          id: string;
+          headline?: string | null;
+          buttonLink?: string | null;
+          buttonLabel?: string | null;
+          image?: {
+            __typename?: "FileField";
+            alt?: string | null;
+            url: string;
+          } | null;
+        }
+      | {
+          __typename?: "SectionContactBannerRecord";
+          id: string;
+          headline?: string | null;
+          buttonLink?: string | null;
+          buttonLabel?: string | null;
+        }
+      | {
+          __typename?: "SectionHeroRecord";
+          id: string;
+          heroHeadline?: string | null;
+          buttonLink?: string | null;
+          buttonLabel?: string | null;
+          heroImage?: {
+            __typename?: "FileField";
+            url: string;
+            alt?: string | null;
+          } | null;
+        }
+    >;
+  } | null;
+};
+
 export type ISiteLayoutQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ISiteLayoutQuery = {
@@ -2612,6 +2655,40 @@ export type ISiteLayoutQuery = {
   } | null;
 };
 
+export const HomepageDocument = gql`
+  query Homepage {
+    homepage {
+      homepageContent {
+        ... on SectionHeroRecord {
+          id
+          heroHeadline
+          buttonLink
+          buttonLabel
+          heroImage {
+            url
+            alt
+          }
+        }
+        ... on SectionAboutMeRecord {
+          id
+          image {
+            alt
+            url
+          }
+          headline
+          buttonLink
+          buttonLabel
+        }
+        ... on SectionContactBannerRecord {
+          id
+          headline
+          buttonLink
+          buttonLabel
+        }
+      }
+    }
+  }
+`;
 export const SiteLayoutDocument = gql`
   query SiteLayout {
     sitelayout {
@@ -2658,6 +2735,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    Homepage(
+      variables?: IHomepageQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<IHomepageQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<IHomepageQuery>(HomepageDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "Homepage",
+        "query"
+      );
+    },
     SiteLayout(
       variables?: ISiteLayoutQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders

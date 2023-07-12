@@ -27,13 +27,13 @@ export default function MenuLink({
       className={css({
         ...linkStyles,
         textStyle: "button",
-        color: isPath(href) ? "cyan" : "",
+        color: href && isPath(href) ? "cyan" : "",
         _hover: {
-          opacity: isPath(href) ? "1" : ".5",
+          opacity: href && isPath(href) ? "1" : ".5",
         },
       })}
     >
-      <Link href={href}>{label}</Link>
+      {href && <Link href={href}>{label}</Link>}
     </li>
   );
 }

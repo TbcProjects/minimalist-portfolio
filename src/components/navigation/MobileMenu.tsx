@@ -7,7 +7,6 @@ import { Squash as Hamburger } from "hamburger-react";
 
 import { css } from "../../../styled-system/css";
 
-import type { MenuItem } from "@typesDef/general";
 import type { INavigationContent } from "@app/layout";
 
 interface MobileMenuProps {

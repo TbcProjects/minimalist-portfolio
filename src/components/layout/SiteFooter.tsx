@@ -8,6 +8,7 @@ import { container, flex } from "../../../styled-system/patterns";
 
 import SiteLogo from "../icons/SiteLogo";
 import Social from "../navigation/Social";
+import MenuLink from "@components/navigation/MenuLink";
 
 import { INavigationContent } from "@app/layout";
 import { ISocialContent } from "@app/layout";
@@ -27,23 +28,14 @@ export default function SiteFooter({
   const isPath = (itemPath: string) => path === itemPath;
 
   const socialData = ["TWITTER", "GITHUB", "LINKEDIN"];
-  const menuContent: MenuItem[] = [
-    { name: "HOME", src: "/" },
-    { name: "PORTFOLIO", src: "/portfolio" },
-    { name: "CONTACT ME", src: "/contact" },
-  ];
 
-  const menuItems = menuContent.map((item, index) => {
+  const menuItems = navigationLinks.navigationLinks.map((item, index) => {
     return (
-      <li
-        key={index}
-        className={css({
-          marginBottom: { base: "32px", md: "0" },
-          color: isPath(item.src) ? "cyan" : "",
-        })}
-      >
-        <Link href={item.src}>{item.name}</Link>
-      </li>
+      <MenuLink
+        key={item._modelApiKey}
+        href={item.linkUrl || ""}
+        label={item.linkName || ""}
+      />
     );
   });
 
@@ -80,7 +72,7 @@ export default function SiteFooter({
         >
           {menuItems}
         </ul>
-        <Social />
+        <Social socialLinks={socialLinks} />
       </div>
     </footer>
   );

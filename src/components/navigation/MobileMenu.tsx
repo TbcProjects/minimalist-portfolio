@@ -8,22 +8,21 @@ import { Squash as Hamburger } from "hamburger-react";
 import { css } from "../../../styled-system/css";
 
 import type { MenuItem } from "@typesDef/general";
+import type { INavigationContent } from "@app/layout";
 
-export default function MobileMenu() {
+interface MobileMenuProps {
+  navigationLinks: INavigationContent;
+}
+
+export default function MobileMenu({ navigationLinks }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuContent: MenuItem[] = [
-    { name: "HOME", src: "/" },
-    { name: "PORTFOLIO", src: "/portfolio" },
-    { name: "CONTACT ME", src: "/contact" },
-  ];
-
-  const menuItems = menuContent.map((item, index) => {
+  const menuItems = navigationLinks.navigationLinks.map((item) => {
     return (
       <MenuLink
-        key={item.name}
-        href={item.src}
-        label={item.name}
+        key={item._modelApiKey || ""}
+        href={item.linkUrl || ""}
+        label={item.linkName || ""}
         linkStyles={{
           marginBottom: "32px",
           "&:last-child": {

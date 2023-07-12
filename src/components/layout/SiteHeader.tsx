@@ -31,7 +31,7 @@ export default function SiteHeader({ navigationLinks }: SiteHeaderProps) {
         </Link>
 
         <DesktopMenu navigationLinks={navigationLinks} />
-        <MobileMenu />
+        <MobileMenu navigationLinks={navigationLinks} />
       </div>
     </header>
   );

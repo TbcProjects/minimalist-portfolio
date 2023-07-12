@@ -9,11 +9,20 @@ import { container, flex } from "../../../styled-system/patterns";
 import SiteLogo from "../icons/SiteLogo";
 import Social from "../navigation/Social";
 
+import { INavigationContent } from "@app/layout";
+import { ISocialContent } from "@app/layout";
+
 import { MenuItem } from "@typesDef/general";
 
-interface SiteFooterProps {}
+interface SiteFooterProps {
+  navigationLinks: INavigationContent;
+  socialLinks: ISocialContent;
+}
 
-export default function SiteFooter({}: SiteFooterProps) {
+export default function SiteFooter({
+  navigationLinks,
+  socialLinks,
+}: SiteFooterProps) {
   const path = usePathname();
   const isPath = (itemPath: string) => path === itemPath;
 
@@ -44,7 +53,6 @@ export default function SiteFooter({}: SiteFooterProps) {
         className={container({
           display: "flex",
           flexDirection: { base: "column", md: "row" },
-          //   justifyContent: {base: 'center'},
           alignItems: "center",
           maxW: "breakpoint-lg",
           px: { base: "32px", md: "38px", lg: "0" },

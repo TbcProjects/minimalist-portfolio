@@ -1,16 +1,14 @@
 import { GraphQLClient } from "graphql-request";
+import { getSdk } from "@typesDef/dato";
 
-export const datoClient = async (query: string) => {
-  const endpoint = "https://graphql.datocms.com";
+export const configureSdk = () => {
+  const headers: Record<string, string> = {
+    authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+  };
 
-  const client = new GraphQLClient(endpoint, {
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer " + process.env.NEXT_DATOCMS_API_TOKEN,
-    },
-  });
+  const endpoint = "https://graphql.datocms.com/preview";
 
-  const data = await client.request(query);
+  const client = new GraphQLClient(endpoint, { headers });
 
-  return data;
+  return getSdk(client);
 };

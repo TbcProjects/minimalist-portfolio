@@ -8,7 +8,13 @@ import { css } from "../../../styled-system/css";
 
 import { container, hstack } from "../../../styled-system/patterns";
 
-export default function SiteHeader() {
+import type { INavigationContent } from "@app/layout";
+
+interface SiteHeaderProps {
+  navigationLinks: INavigationContent;
+}
+
+export default function SiteHeader({ navigationLinks }: SiteHeaderProps) {
   return (
     <header
       className={container({
@@ -24,7 +30,7 @@ export default function SiteHeader() {
           </div>
         </Link>
 
-        <DesktopMenu />
+        <DesktopMenu navigationLinks={navigationLinks} />
         <MobileMenu />
       </div>
     </header>

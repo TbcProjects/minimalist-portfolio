@@ -41,12 +41,6 @@ export type Scalars = {
   UploadId: { input: string; output: string };
 };
 
-/** Specifies how to filter Boolean fields */
-export type IBooleanFilter = {
-  /** Search for records with an exact match */
-  eq?: InputMaybe<Scalars["BooleanType"]["input"]>;
-};
-
 export type ICollectionMetadata = {
   __typename?: "CollectionMetadata";
   count: Scalars["IntType"]["output"];
@@ -99,24 +93,6 @@ export type IContactpageRecord = IRecordInterface & {
 /** Record of type ContactPage (contactpage) */
 export type IContactpageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
-};
-
-/** Specifies how to filter by creation datetime */
-export type ICreatedAtFilter = {
-  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  eq?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
-  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  neq?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
 export enum IFaviconType {
@@ -1737,21 +1713,15 @@ export type IInUseFilter = {
   eq?: InputMaybe<Scalars["BooleanType"]["input"]>;
 };
 
-/** Specifies how to filter by ID */
-export type IItemIdFilter = {
-  /** Search the record with the specified ID */
-  eq?: InputMaybe<Scalars["ItemId"]["input"]>;
-  /** Search records with the specified IDs */
-  in?: InputMaybe<Array<InputMaybe<Scalars["ItemId"]["input"]>>>;
-  /** Exclude the record with the specified ID */
-  neq?: InputMaybe<Scalars["ItemId"]["input"]>;
-  /** Search records that do not have the specified IDs */
-  notIn?: InputMaybe<Array<InputMaybe<Scalars["ItemId"]["input"]>>>;
-};
+export enum IItemStatus {
+  Draft = "draft",
+  Published = "published",
+  Updated = "updated",
+}
 
-/** Block of type Item | Nav link (item_nav_link) */
-export type IItemNavLinkRecord = IRecordInterface & {
-  __typename?: "ItemNavLinkRecord";
+/** Block of type Item | link (link) */
+export type ILinkRecord = IRecordInterface & {
+  __typename?: "LinkRecord";
   _createdAt: Scalars["DateTime"]["output"];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars["String"]["output"]>;
@@ -1766,20 +1736,65 @@ export type IItemNavLinkRecord = IRecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
-  linkLabel?: Maybe<Scalars["String"]["output"]>;
-  pageUrl?: Maybe<Scalars["String"]["output"]>;
+  linkIcon?: Maybe<Scalars["String"]["output"]>;
+  linkName?: Maybe<Scalars["String"]["output"]>;
+  linkUrl?: Maybe<Scalars["String"]["output"]>;
 };
 
-/** Block of type Item | Nav link (item_nav_link) */
-export type IItemNavLinkRecord_SeoMetaTagsArgs = {
+/** Block of type Item | link (link) */
+export type ILinkRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
 };
 
-export enum IItemStatus {
-  Draft = "draft",
-  Published = "published",
-  Updated = "updated",
-}
+/** Block of type Module | Navigation (module_navigation) */
+export type IModuleNavigationRecord = IRecordInterface & {
+  __typename?: "ModuleNavigationRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<ITag>;
+  _status: IItemStatus | `${IItemStatus}`;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  navigationLinks: Array<ILinkRecord>;
+};
+
+/** Block of type Module | Navigation (module_navigation) */
+export type IModuleNavigationRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<ISiteLocale>;
+};
+
+/** Block of type Module | Social (module_social) */
+export type IModuleSocialRecord = IRecordInterface & {
+  __typename?: "ModuleSocialRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<ITag>;
+  _status: IItemStatus | `${IItemStatus}`;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars["ItemId"]["output"];
+  socialLinks: Array<ILinkRecord>;
+};
+
+/** Block of type Module | Social (module_social) */
+export type IModuleSocialRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<ISiteLocale>;
+};
 
 export enum IMuxThumbnailFormatType {
   Gif = "gif",
@@ -1819,35 +1834,13 @@ export type IPorfoliopageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
 };
 
-/** Specifies how to filter by publication datetime */
-export type IPublishedAtFilter = {
-  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  eq?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
-  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  neq?: InputMaybe<Scalars["DateTime"]["input"]>;
-};
-
 /** The query root for this schema */
 export type IQuery = {
   __typename?: "Query";
-  /** Returns meta information regarding a record collection */
-  _allSiteheadersMeta: ICollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: ICollectionMetadata;
   /** Returns the single instance record */
   _site: ISite;
-  /** Returns a collection of records */
-  allSiteheaders: Array<ISiteheaderRecord>;
   /** Returns a collection of assets */
   allUploads: Array<IFileField>;
   /** Returns the single instance record */
@@ -1857,17 +1850,9 @@ export type IQuery = {
   /** Returns the single instance record */
   porfoliopage?: Maybe<IPorfoliopageRecord>;
   /** Returns the single instance record */
-  sitefooter?: Maybe<ISitefooterRecord>;
-  /** Returns a specific record */
-  siteheader?: Maybe<ISiteheaderRecord>;
+  sitelayout?: Maybe<ISitelayoutRecord>;
   /** Returns a specific asset */
   upload?: Maybe<IFileField>;
-};
-
-/** The query root for this schema */
-export type IQuery_AllSiteheadersMetaArgs = {
-  filter?: InputMaybe<ISiteheaderModelFilter>;
-  locale?: InputMaybe<ISiteLocale>;
 };
 
 /** The query root for this schema */
@@ -1880,16 +1865,6 @@ export type IQuery_AllUploadsMetaArgs = {
 export type IQuery_SiteArgs = {
   fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
   locale?: InputMaybe<ISiteLocale>;
-};
-
-/** The query root for this schema */
-export type IQueryAllSiteheadersArgs = {
-  fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
-  filter?: InputMaybe<ISiteheaderModelFilter>;
-  first?: InputMaybe<Scalars["IntType"]["input"]>;
-  locale?: InputMaybe<ISiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ISiteheaderModelOrderBy>>>;
-  skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
 /** The query root for this schema */
@@ -1921,17 +1896,9 @@ export type IQueryPorfoliopageArgs = {
 };
 
 /** The query root for this schema */
-export type IQuerySitefooterArgs = {
+export type IQuerySitelayoutArgs = {
   fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
   locale?: InputMaybe<ISiteLocale>;
-};
-
-/** The query root for this schema */
-export type IQuerySiteheaderArgs = {
-  fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
-  filter?: InputMaybe<ISiteheaderModelFilter>;
-  locale?: InputMaybe<ISiteLocale>;
-  orderBy?: InputMaybe<Array<InputMaybe<ISiteheaderModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -2210,9 +2177,13 @@ export enum ISiteLocale {
   En = "en",
 }
 
-/** Record of type SiteFooter (sitefooter) */
-export type ISitefooterRecord = IRecordInterface & {
-  __typename?: "SitefooterRecord";
+export type ISitelayoutModelLayoutModulesField =
+  | IModuleNavigationRecord
+  | IModuleSocialRecord;
+
+/** Record of type SiteLayout (sitelayout) */
+export type ISitelayoutRecord = IRecordInterface & {
+  __typename?: "SitelayoutRecord";
   _createdAt: Scalars["DateTime"]["output"];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars["String"]["output"]>;
@@ -2227,83 +2198,12 @@ export type ISitefooterRecord = IRecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  layoutModules: Array<ISitelayoutModelLayoutModulesField>;
 };
 
-/** Record of type SiteFooter (sitefooter) */
-export type ISitefooterRecord_SeoMetaTagsArgs = {
+/** Record of type SiteLayout (sitelayout) */
+export type ISitelayoutRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
-};
-
-export type ISiteheaderModelFilter = {
-  AND?: InputMaybe<Array<InputMaybe<ISiteheaderModelFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<ISiteheaderModelFilter>>>;
-  _createdAt?: InputMaybe<ICreatedAtFilter>;
-  _firstPublishedAt?: InputMaybe<IPublishedAtFilter>;
-  _isValid?: InputMaybe<IBooleanFilter>;
-  _publicationScheduledAt?: InputMaybe<IPublishedAtFilter>;
-  _publishedAt?: InputMaybe<IPublishedAtFilter>;
-  _status?: InputMaybe<IStatusFilter>;
-  _unpublishingScheduledAt?: InputMaybe<IPublishedAtFilter>;
-  _updatedAt?: InputMaybe<IUpdatedAtFilter>;
-  id?: InputMaybe<IItemIdFilter>;
-};
-
-export enum ISiteheaderModelOrderBy {
-  _createdAt_ASC = "_createdAt_ASC",
-  _createdAt_DESC = "_createdAt_DESC",
-  _firstPublishedAt_ASC = "_firstPublishedAt_ASC",
-  _firstPublishedAt_DESC = "_firstPublishedAt_DESC",
-  _isValid_ASC = "_isValid_ASC",
-  _isValid_DESC = "_isValid_DESC",
-  _publicationScheduledAt_ASC = "_publicationScheduledAt_ASC",
-  _publicationScheduledAt_DESC = "_publicationScheduledAt_DESC",
-  _publishedAt_ASC = "_publishedAt_ASC",
-  _publishedAt_DESC = "_publishedAt_DESC",
-  _status_ASC = "_status_ASC",
-  _status_DESC = "_status_DESC",
-  _unpublishingScheduledAt_ASC = "_unpublishingScheduledAt_ASC",
-  _unpublishingScheduledAt_DESC = "_unpublishingScheduledAt_DESC",
-  _updatedAt_ASC = "_updatedAt_ASC",
-  _updatedAt_DESC = "_updatedAt_DESC",
-  Id_ASC = "id_ASC",
-  Id_DESC = "id_DESC",
-}
-
-/** Record of type SiteHeader (siteheader) */
-export type ISiteheaderRecord = IRecordInterface & {
-  __typename?: "SiteheaderRecord";
-  _createdAt: Scalars["DateTime"]["output"];
-  /** Editing URL */
-  _editingUrl?: Maybe<Scalars["String"]["output"]>;
-  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _isValid: Scalars["BooleanType"]["output"];
-  _modelApiKey: Scalars["String"]["output"];
-  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-  /** SEO meta tags */
-  _seoMetaTags: Array<ITag>;
-  _status: IItemStatus | `${IItemStatus}`;
-  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
-  _updatedAt: Scalars["DateTime"]["output"];
-  id: Scalars["ItemId"]["output"];
-  navItems: Array<IItemNavLinkRecord>;
-};
-
-/** Record of type SiteHeader (siteheader) */
-export type ISiteheaderRecord_SeoMetaTagsArgs = {
-  locale?: InputMaybe<ISiteLocale>;
-};
-
-/** Specifies how to filter by status */
-export type IStatusFilter = {
-  /** Search the record with the specified status */
-  eq?: InputMaybe<IItemStatus | `${IItemStatus}`>;
-  /** Search records with the specified statuses */
-  in?: InputMaybe<Array<InputMaybe<IItemStatus | `${IItemStatus}`>>>;
-  /** Exclude the record with the specified status */
-  neq?: InputMaybe<IItemStatus | `${IItemStatus}`>;
-  /** Search records without the specified statuses */
-  notIn?: InputMaybe<Array<InputMaybe<IItemStatus | `${IItemStatus}`>>>;
 };
 
 export type IStringMatchesFilter = {
@@ -2329,24 +2229,6 @@ export type ITypeFilter = {
   neq?: InputMaybe<IUploadType | `${IUploadType}`>;
   /** Search uploads without the specified types */
   notIn?: InputMaybe<Array<InputMaybe<IUploadType | `${IUploadType}`>>>;
-};
-
-/** Specifies how to filter by update datetime */
-export type IUpdatedAtFilter = {
-  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  eq?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with the specified field defined (i.e. with any value) or not */
-  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
-  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
-  gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
-  lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
-  neq?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
 /** Specifies how to filter by default alt */
@@ -2695,26 +2577,65 @@ export type IFocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
-export type ISiteHeaderQueryVariables = Exact<{ [key: string]: never }>;
+export type ISiteLayoutQueryVariables = Exact<{ [key: string]: never }>;
 
-export type ISiteHeaderQuery = {
+export type ISiteLayoutQuery = {
   __typename?: "Query";
-  siteheader?: {
-    __typename?: "SiteheaderRecord";
-    navItems: Array<{
-      __typename?: "ItemNavLinkRecord";
-      pageUrl?: string | null;
-      linkLabel?: string | null;
-    }>;
+  sitelayout?: {
+    __typename?: "SitelayoutRecord";
+    layoutModules: Array<
+      | {
+          __typename?: "ModuleNavigationRecord";
+          id: string;
+          _modelApiKey: string;
+          navigationLinks: Array<{
+            __typename?: "LinkRecord";
+            linkIcon?: string | null;
+            linkName?: string | null;
+            linkUrl?: string | null;
+            _modelApiKey: string;
+          }>;
+        }
+      | {
+          __typename?: "ModuleSocialRecord";
+          id: string;
+          _modelApiKey: string;
+          socialLinks: Array<{
+            __typename?: "LinkRecord";
+            linkIcon?: string | null;
+            linkName?: string | null;
+            linkUrl?: string | null;
+            _modelApiKey: string;
+          }>;
+        }
+    >;
   } | null;
 };
 
-export const SiteHeaderDocument = gql`
-  query SiteHeader {
-    siteheader {
-      navItems {
-        pageUrl
-        linkLabel
+export const SiteLayoutDocument = gql`
+  query SiteLayout {
+    sitelayout {
+      layoutModules {
+        ... on ModuleSocialRecord {
+          id
+          socialLinks {
+            linkIcon
+            linkName
+            linkUrl
+            _modelApiKey
+          }
+          _modelApiKey
+        }
+        ... on ModuleNavigationRecord {
+          id
+          navigationLinks {
+            linkIcon
+            linkName
+            linkUrl
+            _modelApiKey
+          }
+          _modelApiKey
+        }
       }
     }
   }
@@ -2737,17 +2658,17 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
-    SiteHeader(
-      variables?: ISiteHeaderQueryVariables,
+    SiteLayout(
+      variables?: ISiteLayoutQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders
-    ): Promise<ISiteHeaderQuery> {
+    ): Promise<ISiteLayoutQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<ISiteHeaderQuery>(SiteHeaderDocument, variables, {
+          client.request<ISiteLayoutQuery>(SiteLayoutDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        "SiteHeader",
+        "SiteLayout",
         "query"
       );
     },

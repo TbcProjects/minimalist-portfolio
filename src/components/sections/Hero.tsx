@@ -15,7 +15,7 @@ export default function Hero({ content }: HeroProps) {
   const { heroHeadline, heroImage, buttonLabel, buttonLink } = content;
 
   return (
-    <div
+    <section
       className={container({
         maxW: "breakpoint-lg",
         px: { base: "32px", md: "38px", lg: "0" },
@@ -90,6 +90,6 @@ export default function Hero({ content }: HeroProps) {
           left: "-69px",
         })}
       ></div>
-    </div>
+    </section>
   );
 }

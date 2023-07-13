@@ -51,10 +51,6 @@ const tokens = {
     "value": "768px",
     "variable": "var(--breakpoints-md)"
   },
-  "breakpoints.lg": {
-    "value": "1024px",
-    "variable": "var(--breakpoints-lg)"
-  },
   "breakpoints.xl": {
     "value": "1280px",
     "variable": "var(--breakpoints-xl)"
@@ -62,6 +58,10 @@ const tokens = {
   "breakpoints.2xl": {
     "value": "1536px",
     "variable": "var(--breakpoints-2xl)"
+  },
+  "breakpoints.lg": {
+    "value": "1110px",
+    "variable": "var(--breakpoints-lg)"
   },
   "sizes.breakpoint-sm": {
     "value": "640px",
@@ -71,10 +71,6 @@ const tokens = {
     "value": "768px",
     "variable": "var(--sizes-breakpoint-md)"
   },
-  "sizes.breakpoint-lg": {
-    "value": "1024px",
-    "variable": "var(--sizes-breakpoint-lg)"
-  },
   "sizes.breakpoint-xl": {
     "value": "1280px",
     "variable": "var(--sizes-breakpoint-xl)"
@@ -82,6 +78,10 @@ const tokens = {
   "sizes.breakpoint-2xl": {
     "value": "1536px",
     "variable": "var(--sizes-breakpoint-2xl)"
+  },
+  "sizes.breakpoint-lg": {
+    "value": "1110px",
+    "variable": "var(--sizes-breakpoint-lg)"
   }
 }
 

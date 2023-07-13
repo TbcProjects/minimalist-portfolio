@@ -23,6 +23,9 @@ export default defineConfig({
     extend: {
       textStyles,
       layerStyles,
+      breakpoints: {
+        lg: "1110px",
+      },
     },
   },
 

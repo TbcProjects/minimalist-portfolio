@@ -18,17 +18,20 @@ export default function MobileMenu({ navigationLinks }: MobileMenuProps) {
 
   const menuItems = navigationLinks.navigationLinks.map((item) => {
     return (
-      <MenuLink
-        key={item._modelApiKey || ""}
-        href={item.linkUrl || ""}
-        label={item.linkName || ""}
-        linkStyles={{
-          marginBottom: "32px",
-          "&:last-child": {
-            marginBottom: "0",
-          },
-        }}
-      />
+      item.linkUrl &&
+      item.linkName && (
+        <MenuLink
+          key={item._modelApiKey}
+          href={item.linkUrl}
+          label={item.linkName}
+          linkStyles={{
+            marginBottom: "32px",
+            "&:last-child": {
+              marginBottom: "0",
+            },
+          }}
+        />
+      )
     );
   });
 

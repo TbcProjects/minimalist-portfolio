@@ -12,11 +12,14 @@ interface DeskTopMenuProps {
 export default function DesktopMenu({ navigationLinks }: DeskTopMenuProps) {
   const menuItems = navigationLinks.navigationLinks.map((item) => {
     return (
-      <MenuLink
-        key={item._modelApiKey || ""}
-        href={item.linkUrl || ""}
-        label={item.linkName || ""}
-      />
+      item.linkUrl &&
+      item.linkName && (
+        <MenuLink
+          key={item._modelApiKey || ""}
+          href={item.linkUrl || ""}
+          label={item.linkName || ""}
+        />
+      )
     );
   });
 

@@ -4,6 +4,10 @@ export const HOMEPAGE_QUERY = gql`
   query Homepage {
     homepage {
       homepageContent {
+        ... on RecordInterface {
+          id
+          _modelApiKey
+        }
         ... on SectionHeroRecord {
           id
           heroHeadline
@@ -13,6 +17,7 @@ export const HOMEPAGE_QUERY = gql`
             url
             alt
           }
+          _modelApiKey
         }
         ... on SectionAboutMeRecord {
           id
@@ -23,12 +28,14 @@ export const HOMEPAGE_QUERY = gql`
           headline
           buttonLink
           buttonLabel
+          _modelApiKey
         }
         ... on SectionContactBannerRecord {
           id
           headline
           buttonLink
           buttonLabel
+          _modelApiKey
         }
       }
     }

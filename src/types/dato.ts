@@ -2588,6 +2588,7 @@ export type IHomepageQuery = {
       | {
           __typename?: "SectionAboutMeRecord";
           id: string;
+          _modelApiKey: string;
           headline?: string | null;
           buttonLink?: string | null;
           buttonLabel?: string | null;
@@ -2600,6 +2601,7 @@ export type IHomepageQuery = {
       | {
           __typename?: "SectionContactBannerRecord";
           id: string;
+          _modelApiKey: string;
           headline?: string | null;
           buttonLink?: string | null;
           buttonLabel?: string | null;
@@ -2607,6 +2609,7 @@ export type IHomepageQuery = {
       | {
           __typename?: "SectionHeroRecord";
           id: string;
+          _modelApiKey: string;
           heroHeadline?: string | null;
           buttonLink?: string | null;
           buttonLabel?: string | null;
@@ -2659,6 +2662,10 @@ export const HomepageDocument = gql`
   query Homepage {
     homepage {
       homepageContent {
+        ... on RecordInterface {
+          id
+          _modelApiKey
+        }
         ... on SectionHeroRecord {
           id
           heroHeadline
@@ -2668,6 +2675,7 @@ export const HomepageDocument = gql`
             url
             alt
           }
+          _modelApiKey
         }
         ... on SectionAboutMeRecord {
           id
@@ -2678,12 +2686,14 @@ export const HomepageDocument = gql`
           headline
           buttonLink
           buttonLabel
+          _modelApiKey
         }
         ... on SectionContactBannerRecord {
           id
           headline
           buttonLink
           buttonLabel
+          _modelApiKey
         }
       }
     }

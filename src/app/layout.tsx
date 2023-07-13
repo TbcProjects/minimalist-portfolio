@@ -1,6 +1,6 @@
 import "../lib/theme/global.css";
 
-import { fetchLayoutData } from "@utils/fetchLayoutData";
+import { fetchLayoutData } from "@utils/fetchDato";
 
 import SiteHeader from "@components/layout/SiteHeader";
 import SiteFooter from "@components/layout/SiteFooter";

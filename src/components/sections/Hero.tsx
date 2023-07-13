@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import { css } from "../../../styled-system/css";
-import { container } from "../../../styled-system/patterns";
+import { container, aspectRatio } from "../../../styled-system/patterns";
 
 import ButtonLink from "@components/shared/button/ButtonLink";
 
@@ -25,13 +25,14 @@ export default function Hero({ content }: HeroProps) {
       <div
         className={css({
           position: "relative",
-          maxH: "600px",
+          maxH: { md: "600px" },
         })}
       >
         <div
-          className={css({
+          className={aspectRatio({
+            ratio: 16 / 9,
             pos: "relative",
-            minH: { md: "600px" },
+            minH: { base: "271px", sm: "600px" },
             width: "100%",
           })}
         >
@@ -39,30 +40,33 @@ export default function Hero({ content }: HeroProps) {
             <Image
               src={heroImage.url}
               alt={heroImage.alt}
-              objectFit="cover"
+              // objectFit="cover"
+              // objectFit={"contain"}
               fill={true}
             />
           )}
         </div>
         <div
           className={css({
-            position: "relative",
+            position: { base: "static", md: "relative" },
             display: "flex",
             flexDirection: "column",
             justifyContent: "end",
             alignItems: "flex-start",
-            bottom: "357px",
+            w: { md: "80%", lg: "40%" },
+            h: { md: "278px", lg: "357px" },
+            bottom: { md: "278px", lg: "357px" },
             background: "white",
-            height: "357px",
-            w: "40%",
-            paddingRight: "55px",
+            paddingRight: { md: "125px", lg: "55px" },
           })}
         >
           {heroHeadline && (
             <h1
               className={css({
                 textStyle: "h1",
-                marginBottom: "53px",
+                marginBottom: { md: "53px" },
+                my: "32px",
+                pr: { base: "12px", sm: "0" },
               })}
             >
               {heroHeadline}
@@ -77,6 +81,7 @@ export default function Hero({ content }: HeroProps) {
       </div>
       <div
         className={css({
+          display: { base: "none", lg: "block" },
           border: "1px solid black",
           width: "0",
           height: "600px",

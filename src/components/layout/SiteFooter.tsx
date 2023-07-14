@@ -24,11 +24,6 @@ export default function SiteFooter({
   navigationLinks,
   socialLinks,
 }: SiteFooterProps) {
-  const path = usePathname();
-  const isPath = (itemPath: string) => path === itemPath;
-
-  const socialData = ["TWITTER", "GITHUB", "LINKEDIN"];
-
   const menuItems = navigationLinks.navigationLinks.map((item, index) => {
     return (
       <MenuLink
@@ -55,7 +50,6 @@ export default function SiteFooter({
       >
         <div
           className={css({
-            marginBottom: { base: "32px", md: "0" },
             marginRight: { base: "0", md: "48px" },
           })}
         >
@@ -67,7 +61,8 @@ export default function SiteFooter({
             direction: { base: "column", md: "row" },
             flexGrow: "1",
             alignItems: "center",
-            gap: { base: "0", md: "42px" },
+            gap: { base: "32px", md: "42px" },
+            my: { base: "40px", md: "0" },
           })}
         >
           {menuItems}

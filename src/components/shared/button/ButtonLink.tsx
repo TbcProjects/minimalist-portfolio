@@ -43,7 +43,7 @@ export default function ButtonLink({
       <div
         className={css({
           flex: "1 1 auto",
-          padding: "0 38px",
+          padding: "0 30px",
         })}
       >
         {children}

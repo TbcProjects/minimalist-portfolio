@@ -14,72 +14,62 @@ interface AboutMeProps {
 export default function AboutMe({ content }: AboutMeProps) {
   const { headline, image, buttonLink, buttonLabel, textContent } = content;
 
-  console.log(image?.url, image?.alt);
-
   return (
     <section
       className={container({
         display: "flex",
         flexDirection: "row",
-        gap: "125px",
+        gap: { md: "69px", lg: "125px" },
         maxW: "breakpoint-lg",
         px: { base: "32px", md: "38px", lg: "0" },
         pb: { md: "150px" },
         color: "greyDarkBlue",
       })}
     >
-      {/* <div
-        className={css({
-          position: "relative",
-          maxH: { md: "600px" },
-        })}
-      > */}
       <div
         className={aspectRatio({
           ratio: 16 / 9,
           pos: "relative",
-          // h: { base: "271px", sm: "600px" },
-          minW: "540px",
+          h: { smOnly: "689px" },
+          minW: { md: "40%", lg: "50%" },
           overflow: "hidden",
           flex: "1 1 auto",
         })}
       >
         {image?.url && image.alt && (
-          <Image
-            src={image.url}
-            alt={image.alt}
-            // objectFit="cover"
-            // objectFit={"contain"}
-            fill={true}
-          />
+          <Image src={image.url} alt={image.alt} fill={true} />
         )}
       </div>
-      {/* </div> */}
       <div
         className={css({
           flex: "1 1 auto",
           borderTop: "1px solid #979797",
           borderBottom: "1px solid #979797",
           py: "49px",
-          mr: "97px",
+          mr: { lg: "8%" },
         })}
       >
-        <h1
-          className={css({
-            textStyle: "h2",
-            marginBottom: "28px",
-          })}
-        >
-          {headline}
-        </h1>
-        <p
-          className={css({
-            textStyle: "bodyLg",
-            marginBottom: "24px",
-          })}
-        >
-          {textContent}
-        </p>
+        {headline && (
+          <h1
+            className={css({
+              textStyle: "h2",
+              marginBottom: "28px",
+            })}
+          >
+            {headline}
+          </h1>
+        )}
+        {textContent && (
+          <p
+            className={css({
+              textStyle: "bodyLg",
+              marginBottom: "24px",
+            })}
+          >
+            {textContent}
+          </p>
+        )}
+
         {buttonLink && buttonLabel && (
           <ButtonLink variant="secondary" href={buttonLink}>
             {buttonLabel}

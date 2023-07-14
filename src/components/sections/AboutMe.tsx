@@ -22,7 +22,7 @@ export default function AboutMe({ content }: AboutMeProps) {
         gap: { md: "69px", lg: "125px" },
         maxW: "breakpoint-lg",
         px: { base: "32px", md: "38px", lg: "0" },
-        pb: { md: "150px" },
+        pb: { base: "115px", md: "96px" },
         color: "greyDarkBlue",
       })}
     >
@@ -44,8 +44,9 @@ export default function AboutMe({ content }: AboutMeProps) {
       <div
         className={css({
           flex: "1 1 auto",
-          borderTop: "1px solid #979797",
-          borderBottom: "1px solid #979797",
+          borderTop: "1px solid rgba(151, 151, 151, .25)",
+          borderBottom: "1px solid rgba(151, 151, 151, .25)",
+
           py: "49px",
           mr: { lg: "8%" },
         })}

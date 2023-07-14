@@ -2592,6 +2592,7 @@ export type IHomepageQuery = {
           headline?: string | null;
           buttonLink?: string | null;
           buttonLabel?: string | null;
+          textContent?: string | null;
           image?: {
             __typename?: "FileField";
             alt?: string | null;
@@ -2686,6 +2687,7 @@ export const HomepageDocument = gql`
           headline
           buttonLink
           buttonLabel
+          textContent
           _modelApiKey
         }
         ... on SectionContactBannerRecord {

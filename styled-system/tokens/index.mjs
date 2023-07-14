@@ -27,6 +27,10 @@ const tokens = {
     "value": "#FAFAFA",
     "variable": "var(--colors-light-grey)"
   },
+  "colors.spanishGrey": {
+    "value": "#979797",
+    "variable": "var(--colors-spanish-grey)"
+  },
   "colors.mediumGrey": {
     "value": "#EAEAEB",
     "variable": "var(--colors-medium-grey)"

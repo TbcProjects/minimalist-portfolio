@@ -1,7 +1,7 @@
 /* eslint-disable */
-export type Token = "colors.cyan" | "colors.pine" | "colors.yankee_blue" | "colors.japanese_indigo" | "colors.darkBlue" | "colors.greyDarkBlue" | "colors.lightGrey" | "colors.mediumGrey" | "colors.brightRed" | "fonts.heading" | "fonts.body" | "breakpoints.sm" | "breakpoints.md" | "breakpoints.xl" | "breakpoints.2xl" | "breakpoints.lg" | "sizes.breakpoint-sm" | "sizes.breakpoint-md" | "sizes.breakpoint-xl" | "sizes.breakpoint-2xl" | "sizes.breakpoint-lg"
+export type Token = "colors.cyan" | "colors.pine" | "colors.yankee_blue" | "colors.japanese_indigo" | "colors.darkBlue" | "colors.greyDarkBlue" | "colors.lightGrey" | "colors.spanishGrey" | "colors.mediumGrey" | "colors.brightRed" | "fonts.heading" | "fonts.body" | "breakpoints.sm" | "breakpoints.md" | "breakpoints.xl" | "breakpoints.2xl" | "breakpoints.lg" | "sizes.breakpoint-sm" | "sizes.breakpoint-md" | "sizes.breakpoint-xl" | "sizes.breakpoint-2xl" | "sizes.breakpoint-lg"
 
-export type ColorToken = "cyan" | "pine" | "yankee_blue" | "japanese_indigo" | "darkBlue" | "greyDarkBlue" | "lightGrey" | "mediumGrey" | "brightRed"
+export type ColorToken = "cyan" | "pine" | "yankee_blue" | "japanese_indigo" | "darkBlue" | "greyDarkBlue" | "lightGrey" | "spanishGrey" | "mediumGrey" | "brightRed"
 
 export type FontToken = "heading" | "body"
 

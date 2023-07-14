@@ -1,18 +1,19 @@
-import { cva, type RecipeVariantProps } from '../../../../styled-system/css';
+import { cva, type RecipeVariantProps } from "../../../../styled-system/css";
 
 export const button = cva({
   base: {
-    height: '48px',
-    cursor: 'pointer',
-    textStyle: 'button',
+    height: "48px",
+    minW: "162px",
+    cursor: "pointer",
+    textStyle: "button",
   },
   variants: {
     variant: {
       primary: {
-        layerStyle: 'primaryButton',
+        layerStyle: "primaryButton",
       },
       secondary: {
-        layerStyle: 'secondaryButton',
+        layerStyle: "secondaryButton",
       },
     },
   },

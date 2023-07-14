@@ -21,7 +21,8 @@ export type IHeroContent = IHomepageContent["SectionHeroRecord"];
 
 export type IAboutMeContent = IHomepageContent["SectionAboutMeRecord"];
 
-export type IContactBanner = IHomepageContent["SectionContactBannerRecord"];
+export type IContactBannerContent =
+  IHomepageContent["SectionContactBannerRecord"];
 
 const findContentByKey = (content: IHomepageData, key: string) => {
   return content?.find(
@@ -46,13 +47,13 @@ export default async function Home() {
   const contactBannerSectionContent = findContentByKey(
     homepageData,
     "section_contact_banner"
-  ) as IContactBanner;
+  ) as IContactBannerContent;
 
   return (
     <main>
       <Hero content={heroSectionContent} />
       <AboutMe content={aboutMeSectionContent} />
-      <ContactBanner />
+      <ContactBanner content={contactBannerSectionContent} />
 
       {/* <pre>{JSON.stringify(heroSectionContent, null, 2)}</pre>
       <pre>{JSON.stringify(aboutMeSectionContent, null, 2)}</pre>

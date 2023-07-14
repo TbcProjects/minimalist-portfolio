@@ -18,7 +18,7 @@ export default function AboutMe({ content }: AboutMeProps) {
     <section
       className={container({
         display: "flex",
-        flexDirection: "row",
+        flexDirection: { base: "column", md: "row" },
         gap: { md: "69px", lg: "125px" },
         maxW: "breakpoint-lg",
         px: { base: "32px", md: "38px", lg: "0" },
@@ -30,10 +30,11 @@ export default function AboutMe({ content }: AboutMeProps) {
         className={aspectRatio({
           ratio: 16 / 9,
           pos: "relative",
-          h: { smOnly: "689px" },
-          minW: { md: "40%", lg: "50%" },
+          h: { smDown: "346px", smOnly: "689px" },
+          minW: { base: "100%", md: "40%", lg: "50%" },
           overflow: "hidden",
           flex: "1 1 auto",
+          mb: { smDown: "32px" },
         })}
       >
         {image?.url && image.alt && (

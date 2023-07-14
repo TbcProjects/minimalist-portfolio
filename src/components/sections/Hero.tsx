@@ -19,7 +19,7 @@ export default function Hero({ content }: HeroProps) {
       className={container({
         maxW: "breakpoint-lg",
         px: { base: "32px", md: "38px", lg: "0" },
-        pb: { md: "150px" },
+        pb: { base: "96px", md: "150px" },
       })}
     >
       <div
@@ -66,7 +66,6 @@ export default function Hero({ content }: HeroProps) {
                 textStyle: "h1",
                 marginBottom: { md: "53px" },
                 my: "32px",
-                pr: { base: "12px", sm: "0" },
               })}
             >
               {heroHeadline}

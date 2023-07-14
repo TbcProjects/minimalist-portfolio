@@ -27,7 +27,7 @@
       "@typesDef/*": ["./src/types/*"],
       "@utils/*": ["./src/utils/*"],
       "@theme/*": ["./src/lib/theme*"],
-      "@datocms/*": ["./src/lib/datocms/*"],
+      "@datocms/*": ["src/lib/datoCMS/*"],
       "@styled-system": ["./styled-system"]
     }
   },

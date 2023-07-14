@@ -28,6 +28,7 @@ export const HOMEPAGE_QUERY = gql`
           headline
           buttonLink
           buttonLabel
+          textContent
           _modelApiKey
         }
         ... on SectionContactBannerRecord {

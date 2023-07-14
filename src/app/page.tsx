@@ -38,12 +38,12 @@ export default async function Home() {
     "section_hero"
   ) as IHeroContent;
 
-  const aboutMeSection = findContentByKey(
+  const aboutMeSectionContent = findContentByKey(
     homepageData,
     "section_about_me"
   ) as IAboutMeContent;
 
-  const contactBannerSection = findContentByKey(
+  const contactBannerSectionContent = findContentByKey(
     homepageData,
     "section_contact_banner"
   ) as IContactBanner;
@@ -51,12 +51,12 @@ export default async function Home() {
   return (
     <main>
       <Hero content={heroSectionContent} />
-      <AboutMe />
+      <AboutMe content={aboutMeSectionContent} />
       <ContactBanner />
 
-      <pre>{JSON.stringify(heroSectionContent, null, 2)}</pre>
-      <pre>{JSON.stringify(aboutMeSection, null, 2)}</pre>
-      <pre>{JSON.stringify(contactBannerSection, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(heroSectionContent, null, 2)}</pre>
+      <pre>{JSON.stringify(aboutMeSectionContent, null, 2)}</pre>
+      <pre>{JSON.stringify(contactBannerSectionContent, null, 2)}</pre> */}
     </main>
   );
 }

@@ -1,4 +1,4 @@
-import { configureSdk } from "@lib/datocms/client";
+import { configureSdk } from "@lib/datoCMS/client";
 import { ISiteLayoutQuery, IHomepageQuery } from "@typesDef/dato";
 
 export async function fetchLayoutData() {

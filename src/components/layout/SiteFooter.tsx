@@ -24,7 +24,7 @@ export default function SiteFooter({
   navigationLinks,
   socialLinks,
 }: SiteFooterProps) {
-  const menuItems = navigationLinks.navigationLinks.map((item, index) => {
+  const menuItems = navigationLinks.navigationLinks.map((item) => {
     return (
       <MenuLink
         key={item._modelApiKey}

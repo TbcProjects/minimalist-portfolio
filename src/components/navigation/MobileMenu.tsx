@@ -24,12 +24,6 @@ export default function MobileMenu({ navigationLinks }: MobileMenuProps) {
           key={item._modelApiKey}
           href={item.linkUrl}
           label={item.linkName}
-          linkStyles={{
-            marginBottom: "32px",
-            "&:last-child": {
-              marginBottom: "0",
-            },
-          }}
         />
       )
     );
@@ -61,7 +55,15 @@ export default function MobileMenu({ navigationLinks }: MobileMenuProps) {
             textStyle: "button",
           })}
         >
-          <ul>{menuItems}</ul>
+          <ul
+            className={css({
+              display: "flex",
+              flexDirection: "column",
+              gap: "32px",
+            })}
+          >
+            {menuItems}
+          </ul>
         </nav>
       ) : null}
     </nav>

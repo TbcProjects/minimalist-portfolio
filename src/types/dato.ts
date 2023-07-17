@@ -87,6 +87,7 @@ export type IContactpageRecord = IRecordInterface & {
   _status: IItemStatus | `${IItemStatus}`;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  contactpageContent: Array<ISectionContactDetailRecord>;
   id: Scalars["ItemId"]["output"];
 };
 
@@ -2025,6 +2026,38 @@ export type ISectionContactBannerRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
 };
 
+/** Block of type Section | Contact detail (section_contact_detail) */
+export type ISectionContactDetailRecord = IRecordInterface & {
+  __typename?: "SectionContactDetailRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<ITag>;
+  _status: IItemStatus | `${IItemStatus}`;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  body?: Maybe<Scalars["String"]["output"]>;
+  heading?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ItemId"]["output"];
+  socials: Array<IModuleSocialRecord>;
+};
+
+/** Block of type Section | Contact detail (section_contact_detail) */
+export type ISectionContactDetailRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<ISiteLocale>;
+};
+
+/** Block of type Section | Contact detail (section_contact_detail) */
+export type ISectionContactDetailRecordBodyArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
 /** Block of type Section | Contact me (section_contact_me) */
 export type ISectionContactMeRecord = IRecordInterface & {
   __typename?: "SectionContactMeRecord";
@@ -2578,6 +2611,31 @@ export type IFocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
+export type IContactpageQueryVariables = Exact<{ [key: string]: never }>;
+
+export type IContactpageQuery = {
+  __typename?: "Query";
+  contactpage?: {
+    __typename?: "ContactpageRecord";
+    contactpageContent: Array<{
+      __typename?: "SectionContactDetailRecord";
+      body?: string | null;
+      heading?: string | null;
+      socials: Array<{
+        __typename?: "ModuleSocialRecord";
+        _modelApiKey: string;
+        socialLinks: Array<{
+          __typename?: "LinkRecord";
+          linkIcon?: string | null;
+          linkName?: string | null;
+          linkUrl?: string | null;
+          _modelApiKey: string;
+        }>;
+      }>;
+    }>;
+  } | null;
+};
+
 export type IHomepageQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IHomepageQuery = {
@@ -2659,6 +2717,25 @@ export type ISiteLayoutQuery = {
   } | null;
 };
 
+export const ContactpageDocument = gql`
+  query Contactpage {
+    contactpage {
+      contactpageContent {
+        body
+        heading
+        socials {
+          socialLinks {
+            linkIcon
+            linkName
+            linkUrl
+            _modelApiKey
+          }
+          _modelApiKey
+        }
+      }
+    }
+  }
+`;
 export const HomepageDocument = gql`
   query Homepage {
     homepage {
@@ -2747,6 +2824,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    Contactpage(
+      variables?: IContactpageQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<IContactpageQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<IContactpageQuery>(ContactpageDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "Contactpage",
+        "query"
+      );
+    },
     Homepage(
       variables?: IHomepageQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders

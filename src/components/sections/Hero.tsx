@@ -40,8 +40,8 @@ export default function Hero({ content }: HeroProps) {
             <Image
               src={heroImage.url}
               alt={heroImage.alt}
-              // objectFit="cover"
-              // objectFit={"contain"}
+              sizes="(max-width: 375px) 100vw (max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
+              objectFit="cover"
               fill={true}
             />
           )}

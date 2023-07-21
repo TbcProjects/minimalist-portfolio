@@ -8,20 +8,22 @@ import { hstack } from "../../../styled-system/patterns";
 
 import { SocialIcon } from "@typesDef/general";
 import type { ISocialContent } from "@app/layout";
+import type { IconColor } from "@typesDef/general";
 
 interface SocialProps {
   socialLinks: NonNullable<ISocialContent>;
+  iconColor: IconColor;
 }
 
-export default function Social({ socialLinks }: SocialProps) {
+export default function Social({ socialLinks, iconColor }: SocialProps) {
   const returnSocialIcon = (iconName: SocialIcon) => {
     switch (iconName) {
       case SocialIcon.TWITTER_ICON:
-        return <TwitterIcon />;
+        return <TwitterIcon color={iconColor} />;
       case SocialIcon.GITHUB_ICON:
-        return <GithubIcon />;
+        return <GithubIcon color={iconColor} />;
       case SocialIcon.LINKEDIN_ICON:
-        return <LinkedInIcon />;
+        return <LinkedInIcon color={iconColor} />;
     }
   };
 

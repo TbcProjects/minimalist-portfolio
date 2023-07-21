@@ -1,8 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
 import { css } from "../../../styled-system/css";
 import { container, flex } from "../../../styled-system/patterns";
 
@@ -67,7 +64,7 @@ export default function SiteFooter({
         >
           {menuItems}
         </ul>
-        <Social socialLinks={socialLinks} />
+        <Social socialLinks={socialLinks} iconColor="white" />
       </div>
     </footer>
   );

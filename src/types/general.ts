@@ -8,3 +8,9 @@ export enum SocialIcon {
   GITHUB_ICON = "github_icon",
   LINKEDIN_ICON = "linkedin_icon",
 }
+
+export type IconColor = "white" | "#33323D";
+
+export interface IconProps {
+  color: IconColor;
+}

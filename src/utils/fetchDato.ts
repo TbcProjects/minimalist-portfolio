@@ -1,5 +1,9 @@
 import { configureSdk } from "@lib/datoCMS/client";
-import { ISiteLayoutQuery, IHomepageQuery } from "@typesDef/dato";
+import {
+  ISiteLayoutQuery,
+  IHomepageQuery,
+  IContactpageQuery,
+} from "@typesDef/dato";
 
 export async function fetchLayoutData() {
   const siteLayoutData: ISiteLayoutQuery = await configureSdk().SiteLayout();
@@ -19,4 +23,14 @@ export async function fetchHomepageData() {
   }
 
   return homepageData;
+}
+
+export async function fetchContactpageData() {
+  const contactpageData: IContactpageQuery = await configureSdk().Contactpage();
+
+  if (!contactpageData) {
+    return null!;
+  }
+
+  return contactpageData;
 }

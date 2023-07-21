@@ -4,6 +4,7 @@ import { IContactpageQuery } from "@typesDef/dato";
 
 // sections
 import ContactDetail from "@components/sections/ContactDetail";
+import { ISocialContent } from "@app/layout";
 
 type IContactpageData = NonNullable<
   IContactpageQuery["contactpage"]
@@ -28,18 +29,23 @@ const findContentByKey = (content: IContactpageData, key: string) => {
 
 export default async function ContactPage() {
   const data = await fetchContactpageData();
+
   const contactpageData = data.contactpage
     ?.contactpageContent as IContactpageData;
 
   const contactDetailContent = findContentByKey(
     contactpageData,
     "section_contact_detail"
-  );
+  ) as IContactDetailContent;
+
+  const socialLinks = findContentByKey(
+    contactpageData,
+    "module_social"
+  ) as ISocialContent;
 
   return (
     <main>
-      <ContactDetail />
-      <pre>{JSON.stringify(contactDetailContent, null, 2)}</pre>
+      <ContactDetail content={contactDetailContent} links={socialLinks} />
     </main>
   );
 }

@@ -71,6 +71,10 @@ export type IColorField = {
   red: Scalars["IntType"]["output"];
 };
 
+export type IContactpageModelContactpageContentField =
+  | IModuleSocialRecord
+  | ISectionContactDetailRecord;
+
 /** Record of type ContactPage (contactpage) */
 export type IContactpageRecord = IRecordInterface & {
   __typename?: "ContactpageRecord";
@@ -87,7 +91,7 @@ export type IContactpageRecord = IRecordInterface & {
   _status: IItemStatus | `${IItemStatus}`;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
-  contactpageContent: Array<ISectionContactDetailRecord>;
+  contactpageContent: Array<IContactpageModelContactpageContentField>;
   id: Scalars["ItemId"]["output"];
 };
 
@@ -2617,22 +2621,27 @@ export type IContactpageQuery = {
   __typename?: "Query";
   contactpage?: {
     __typename?: "ContactpageRecord";
-    contactpageContent: Array<{
-      __typename?: "SectionContactDetailRecord";
-      body?: string | null;
-      heading?: string | null;
-      socials: Array<{
-        __typename?: "ModuleSocialRecord";
-        _modelApiKey: string;
-        socialLinks: Array<{
-          __typename?: "LinkRecord";
-          linkIcon?: string | null;
-          linkName?: string | null;
-          linkUrl?: string | null;
+    contactpageContent: Array<
+      | {
+          __typename?: "ModuleSocialRecord";
+          id: string;
           _modelApiKey: string;
-        }>;
-      }>;
-    }>;
+          socialLinks: Array<{
+            __typename?: "LinkRecord";
+            linkIcon?: string | null;
+            linkName?: string | null;
+            linkUrl?: string | null;
+            _modelApiKey: string;
+          }>;
+        }
+      | {
+          __typename?: "SectionContactDetailRecord";
+          id: string;
+          heading?: string | null;
+          body?: string | null;
+          _modelApiKey: string;
+        }
+    >;
   } | null;
 };
 
@@ -2721,9 +2730,14 @@ export const ContactpageDocument = gql`
   query Contactpage {
     contactpage {
       contactpageContent {
-        body
-        heading
-        socials {
+        ... on SectionContactDetailRecord {
+          id
+          heading
+          body
+          _modelApiKey
+        }
+        ... on ModuleSocialRecord {
+          id
           socialLinks {
             linkIcon
             linkName

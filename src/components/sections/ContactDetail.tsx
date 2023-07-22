@@ -1,5 +1,3 @@
-"use client";
-
 import Social from "@components/navigation/Social";
 
 import { css } from "styled-system/css";
@@ -15,8 +13,6 @@ interface ContactDetailProps {
 
 export default function ContactDetail({ content, links }: ContactDetailProps) {
   const { heading, body } = content;
-
-  console.log(links);
 
   return (
     <section
@@ -36,8 +32,7 @@ export default function ContactDetail({ content, links }: ContactDetailProps) {
         <div
           className={css({
             flex: "1 1 auto",
-
-            textStyle: "h1",
+            textStyle: "h2",
             mb: "24px",
           })}
         >
@@ -45,13 +40,20 @@ export default function ContactDetail({ content, links }: ContactDetailProps) {
         </div>
         <div
           className={css({
-            w: "57%",
+            w: { lg: "57%" },
             textStyle: "bodyLg",
             marginBottom: "24px",
           })}
         >
-          {body && <p>{body}</p>}
-
+          {body && (
+            <p
+              className={css({
+                marginBottom: "24px",
+              })}
+            >
+              {body}
+            </p>
+          )}
           <Social socialLinks={links} iconColor="#33323D" />
         </div>
       </div>

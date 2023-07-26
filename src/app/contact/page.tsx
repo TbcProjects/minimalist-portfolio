@@ -1,10 +1,11 @@
 import { fetchContactpageData } from "@utils/fetchDato";
 
 import { IContactpageQuery } from "@typesDef/dato";
+import { ISocialContent } from "@app/layout";
 
 // sections
 import ContactDetail from "@components/sections/ContactDetail";
-import { ISocialContent } from "@app/layout";
+import ContactForm from "@components/sections/ContactForm";
 
 type IContactpageData = NonNullable<
   IContactpageQuery["contactpage"]
@@ -20,6 +21,9 @@ export type IContactpageContent = {
 
 export type IContactDetailContent =
   IContactpageContent["SectionContactDetailRecord"];
+
+export type IContactFormContent =
+  IContactpageContent["SectionContactFormRecord"];
 
 const findContentByKey = (content: IContactpageData, key: string) => {
   return content?.find(
@@ -46,6 +50,7 @@ export default async function ContactPage() {
   return (
     <main>
       <ContactDetail content={contactDetailContent} links={socialLinks} />
+      <ContactForm />
     </main>
   );
 }

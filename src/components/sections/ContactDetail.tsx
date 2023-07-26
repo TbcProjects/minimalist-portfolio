@@ -24,7 +24,7 @@ export default function ContactDetail({ content, links }: ContactDetailProps) {
       <div
         className={flex({
           direction: { base: "column", lg: "row" },
-          py: { base: "25px" },
+          py: { base: "48px" },
           borderTop: "1px solid rgba(151, 151, 151, .25)",
           borderBottom: "1px solid rgba(151, 151, 151, .25)",
         })}
@@ -42,7 +42,6 @@ export default function ContactDetail({ content, links }: ContactDetailProps) {
           className={css({
             w: { lg: "57%" },
             textStyle: "bodyLg",
-            marginBottom: "24px",
           })}
         >
           {body && (

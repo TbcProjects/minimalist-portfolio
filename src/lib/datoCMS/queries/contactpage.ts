@@ -20,6 +20,22 @@ export const CONTACTPAGE_QUERY = gql`
           }
           _modelApiKey
         }
+        ... on SectionContactFormRecord {
+          id
+          _modelApiKey
+          heading
+          contactForm {
+            formElements {
+              placeholder
+              label
+              error
+              inputType
+              _modelApiKey
+            }
+            _modelApiKey
+            submitButtonText
+          }
+        }
       }
     }
   }

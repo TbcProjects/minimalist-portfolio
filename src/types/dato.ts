@@ -73,7 +73,8 @@ export type IColorField = {
 
 export type IContactpageModelContactpageContentField =
   | IModuleSocialRecord
-  | ISectionContactDetailRecord;
+  | ISectionContactDetailRecord
+  | ISectionContactFormRecord;
 
 /** Record of type ContactPage (contactpage) */
 export type IContactpageRecord = IRecordInterface & {
@@ -1718,6 +1719,34 @@ export type IInUseFilter = {
   eq?: InputMaybe<Scalars["BooleanType"]["input"]>;
 };
 
+/** Block of type Item | Input (item_input) */
+export type IItemInputRecord = IRecordInterface & {
+  __typename?: "ItemInputRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<ITag>;
+  _status: IItemStatus | `${IItemStatus}`;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  error?: Maybe<Scalars["String"]["output"]>;
+  id: Scalars["ItemId"]["output"];
+  inputType?: Maybe<Scalars["String"]["output"]>;
+  label?: Maybe<Scalars["String"]["output"]>;
+  placeholder?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Block of type Item | Input (item_input) */
+export type IItemInputRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<ISiteLocale>;
+};
+
 export enum IItemStatus {
   Draft = "draft",
   Published = "published",
@@ -1748,6 +1777,32 @@ export type ILinkRecord = IRecordInterface & {
 
 /** Block of type Item | link (link) */
 export type ILinkRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<ISiteLocale>;
+};
+
+/** Block of type Module | Form (module_form) */
+export type IModuleFormRecord = IRecordInterface & {
+  __typename?: "ModuleFormRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<ITag>;
+  _status: IItemStatus | `${IItemStatus}`;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  formElements: Array<IItemInputRecord>;
+  id: Scalars["ItemId"]["output"];
+  submitButtonText?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Block of type Module | Form (module_form) */
+export type IModuleFormRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
 };
 
@@ -2062,9 +2117,9 @@ export type ISectionContactDetailRecordBodyArgs = {
   markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
-/** Block of type Section | Contact me (section_contact_me) */
-export type ISectionContactMeRecord = IRecordInterface & {
-  __typename?: "SectionContactMeRecord";
+/** Block of type Section | Contact form (section_contact_form) */
+export type ISectionContactFormRecord = IRecordInterface & {
+  __typename?: "SectionContactFormRecord";
   _createdAt: Scalars["DateTime"]["output"];
   /** Editing URL */
   _editingUrl?: Maybe<Scalars["String"]["output"]>;
@@ -2078,11 +2133,13 @@ export type ISectionContactMeRecord = IRecordInterface & {
   _status: IItemStatus | `${IItemStatus}`;
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
+  contactForm: Array<IModuleFormRecord>;
+  heading?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ItemId"]["output"];
 };
 
-/** Block of type Section | Contact me (section_contact_me) */
-export type ISectionContactMeRecord_SeoMetaTagsArgs = {
+/** Block of type Section | Contact form (section_contact_form) */
+export type ISectionContactFormRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
 };
 
@@ -2641,6 +2698,25 @@ export type IContactpageQuery = {
           body?: string | null;
           _modelApiKey: string;
         }
+      | {
+          __typename?: "SectionContactFormRecord";
+          id: string;
+          _modelApiKey: string;
+          heading?: string | null;
+          contactForm: Array<{
+            __typename?: "ModuleFormRecord";
+            _modelApiKey: string;
+            submitButtonText?: string | null;
+            formElements: Array<{
+              __typename?: "ItemInputRecord";
+              placeholder?: string | null;
+              label?: string | null;
+              error?: string | null;
+              inputType?: string | null;
+              _modelApiKey: string;
+            }>;
+          }>;
+        }
     >;
   } | null;
 };
@@ -2745,6 +2821,22 @@ export const ContactpageDocument = gql`
             _modelApiKey
           }
           _modelApiKey
+        }
+        ... on SectionContactFormRecord {
+          id
+          _modelApiKey
+          heading
+          contactForm {
+            formElements {
+              placeholder
+              label
+              error
+              inputType
+              _modelApiKey
+            }
+            _modelApiKey
+            submitButtonText
+          }
         }
       }
     }

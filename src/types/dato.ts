@@ -34,11 +34,18 @@ export type Scalars = {
   FloatType: { input: number; output: number };
   IntType: { input: number; output: number };
   ItemId: { input: string; output: string };
+  JsonField: { input: unknown; output: unknown };
   MetaTagAttributes: {
     input: Record<string, string>;
     output: Record<string, string>;
   };
   UploadId: { input: string; output: string };
+};
+
+/** Specifies how to filter Boolean fields */
+export type IBooleanFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars["BooleanType"]["input"]>;
 };
 
 export type ICollectionMetadata = {
@@ -99,6 +106,24 @@ export type IContactpageRecord = IRecordInterface & {
 /** Record of type ContactPage (contactpage) */
 export type IContactpageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
+};
+
+/** Specifies how to filter by creation datetime */
+export type ICreatedAtFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
 export enum IFaviconType {
@@ -248,6 +273,34 @@ export type IFileFieldInterfaceTitleArgs = {
 
 export type IFileFieldInterfaceUrlArgs = {
   imgixParams?: InputMaybe<IImgixParams>;
+};
+
+/** Specifies how to filter Single-file/image fields */
+export type IFileFilter = {
+  /** Search for records with an exact match. The specified value must be an Upload ID */
+  eq?: InputMaybe<Scalars["UploadId"]["input"]>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records that have one of the specified uploads */
+  in?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+  /** Exclude records with an exact match. The specified value must be an Upload ID */
+  neq?: InputMaybe<Scalars["UploadId"]["input"]>;
+  /** Filter records that do not have one of the specified uploads */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+};
+
+/** Specifies how to filter Multiple files/images field */
+export type IGalleryFilter = {
+  /** Filter records that have all of the specified uploads. The specified values must be Upload IDs */
+  allIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+  /** Filter records that have one of the specified uploads. The specified values must be Upload IDs */
+  anyIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+  /** Search for records with an exact match. The specified values must be Upload IDs */
+  eq?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records that do not have any of the specified uploads. The specified values must be Upload IDs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["UploadId"]["input"]>>>;
 };
 
 export type IGlobalSeoField = {
@@ -1719,6 +1772,18 @@ export type IInUseFilter = {
   eq?: InputMaybe<Scalars["BooleanType"]["input"]>;
 };
 
+/** Specifies how to filter by ID */
+export type IItemIdFilter = {
+  /** Search the record with the specified ID */
+  eq?: InputMaybe<Scalars["ItemId"]["input"]>;
+  /** Search records with the specified IDs */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ItemId"]["input"]>>>;
+  /** Exclude the record with the specified ID */
+  neq?: InputMaybe<Scalars["ItemId"]["input"]>;
+  /** Search records that do not have the specified IDs */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ItemId"]["input"]>>>;
+};
+
 /** Block of type Item | Input (item_input) */
 export type IItemInputRecord = IRecordInterface & {
   __typename?: "ItemInputRecord";
@@ -1752,6 +1817,12 @@ export enum IItemStatus {
   Published = "published",
   Updated = "updated",
 }
+
+/** Specifies how to filter JSON fields */
+export type IJsonFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+};
 
 /** Block of type Item | link (link) */
 export type ILinkRecord = IRecordInterface & {
@@ -1887,6 +1958,7 @@ export type IPorfoliopageRecord = IRecordInterface & {
   _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
   _updatedAt: Scalars["DateTime"]["output"];
   id: Scalars["ItemId"]["output"];
+  portfolioPageContent: Array<ISectionContactBannerRecord>;
 };
 
 /** Record of type PorfolioPage (porfoliopage) */
@@ -1894,13 +1966,120 @@ export type IPorfoliopageRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
 };
 
+export type IProjectModelFilter = {
+  AND?: InputMaybe<Array<InputMaybe<IProjectModelFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<IProjectModelFilter>>>;
+  _createdAt?: InputMaybe<ICreatedAtFilter>;
+  _firstPublishedAt?: InputMaybe<IPublishedAtFilter>;
+  _isValid?: InputMaybe<IBooleanFilter>;
+  _publicationScheduledAt?: InputMaybe<IPublishedAtFilter>;
+  _publishedAt?: InputMaybe<IPublishedAtFilter>;
+  _status?: InputMaybe<IStatusFilter>;
+  _unpublishingScheduledAt?: InputMaybe<IPublishedAtFilter>;
+  _updatedAt?: InputMaybe<IUpdatedAtFilter>;
+  heroImage?: InputMaybe<IFileFilter>;
+  id?: InputMaybe<IItemIdFilter>;
+  mainDescription?: InputMaybe<ITextFilter>;
+  previewImages?: InputMaybe<IGalleryFilter>;
+  projectName?: InputMaybe<IStringFilter>;
+  roleSkills?: InputMaybe<IJsonFilter>;
+  shortDescription?: InputMaybe<ITextFilter>;
+  techStack?: InputMaybe<IJsonFilter>;
+};
+
+export enum IProjectModelOrderBy {
+  _createdAt_ASC = "_createdAt_ASC",
+  _createdAt_DESC = "_createdAt_DESC",
+  _firstPublishedAt_ASC = "_firstPublishedAt_ASC",
+  _firstPublishedAt_DESC = "_firstPublishedAt_DESC",
+  _isValid_ASC = "_isValid_ASC",
+  _isValid_DESC = "_isValid_DESC",
+  _publicationScheduledAt_ASC = "_publicationScheduledAt_ASC",
+  _publicationScheduledAt_DESC = "_publicationScheduledAt_DESC",
+  _publishedAt_ASC = "_publishedAt_ASC",
+  _publishedAt_DESC = "_publishedAt_DESC",
+  _status_ASC = "_status_ASC",
+  _status_DESC = "_status_DESC",
+  _unpublishingScheduledAt_ASC = "_unpublishingScheduledAt_ASC",
+  _unpublishingScheduledAt_DESC = "_unpublishingScheduledAt_DESC",
+  _updatedAt_ASC = "_updatedAt_ASC",
+  _updatedAt_DESC = "_updatedAt_DESC",
+  Id_ASC = "id_ASC",
+  Id_DESC = "id_DESC",
+  ProjectName_ASC = "projectName_ASC",
+  ProjectName_DESC = "projectName_DESC",
+}
+
+/** Record of type Project (project) */
+export type IProjectRecord = IRecordInterface & {
+  __typename?: "ProjectRecord";
+  _createdAt: Scalars["DateTime"]["output"];
+  /** Editing URL */
+  _editingUrl?: Maybe<Scalars["String"]["output"]>;
+  _firstPublishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _isValid: Scalars["BooleanType"]["output"];
+  _modelApiKey: Scalars["String"]["output"];
+  _publicationScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** SEO meta tags */
+  _seoMetaTags: Array<ITag>;
+  _status: IItemStatus | `${IItemStatus}`;
+  _unpublishingScheduledAt?: Maybe<Scalars["DateTime"]["output"]>;
+  _updatedAt: Scalars["DateTime"]["output"];
+  heroImage?: Maybe<IFileField>;
+  id: Scalars["ItemId"]["output"];
+  mainDescription?: Maybe<Scalars["String"]["output"]>;
+  previewImages: Array<IFileField>;
+  projectName?: Maybe<Scalars["String"]["output"]>;
+  roleSkills?: Maybe<Scalars["JsonField"]["output"]>;
+  shortDescription?: Maybe<Scalars["String"]["output"]>;
+  techStack?: Maybe<Scalars["JsonField"]["output"]>;
+};
+
+/** Record of type Project (project) */
+export type IProjectRecord_SeoMetaTagsArgs = {
+  locale?: InputMaybe<ISiteLocale>;
+};
+
+/** Record of type Project (project) */
+export type IProjectRecordMainDescriptionArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Record of type Project (project) */
+export type IProjectRecordShortDescriptionArgs = {
+  markdown?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Specifies how to filter by publication datetime */
+export type IPublishedAtFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
 /** The query root for this schema */
 export type IQuery = {
   __typename?: "Query";
+  /** Returns meta information regarding a record collection */
+  _allProjectsMeta: ICollectionMetadata;
   /** Returns meta information regarding an assets collection */
   _allUploadsMeta: ICollectionMetadata;
   /** Returns the single instance record */
   _site: ISite;
+  /** Returns a collection of records */
+  allProjects: Array<IProjectRecord>;
   /** Returns a collection of assets */
   allUploads: Array<IFileField>;
   /** Returns the single instance record */
@@ -1909,10 +2088,18 @@ export type IQuery = {
   homepage?: Maybe<IHomepageRecord>;
   /** Returns the single instance record */
   porfoliopage?: Maybe<IPorfoliopageRecord>;
+  /** Returns a specific record */
+  project?: Maybe<IProjectRecord>;
   /** Returns the single instance record */
   sitelayout?: Maybe<ISitelayoutRecord>;
   /** Returns a specific asset */
   upload?: Maybe<IFileField>;
+};
+
+/** The query root for this schema */
+export type IQuery_AllProjectsMetaArgs = {
+  filter?: InputMaybe<IProjectModelFilter>;
+  locale?: InputMaybe<ISiteLocale>;
 };
 
 /** The query root for this schema */
@@ -1925,6 +2112,16 @@ export type IQuery_AllUploadsMetaArgs = {
 export type IQuery_SiteArgs = {
   fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
   locale?: InputMaybe<ISiteLocale>;
+};
+
+/** The query root for this schema */
+export type IQueryAllProjectsArgs = {
+  fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
+  filter?: InputMaybe<IProjectModelFilter>;
+  first?: InputMaybe<Scalars["IntType"]["input"]>;
+  locale?: InputMaybe<ISiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<IProjectModelOrderBy>>>;
+  skip?: InputMaybe<Scalars["IntType"]["input"]>;
 };
 
 /** The query root for this schema */
@@ -1953,6 +2150,14 @@ export type IQueryHomepageArgs = {
 export type IQueryPorfoliopageArgs = {
   fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
   locale?: InputMaybe<ISiteLocale>;
+};
+
+/** The query root for this schema */
+export type IQueryProjectArgs = {
+  fallbackLocales?: InputMaybe<Array<ISiteLocale>>;
+  filter?: InputMaybe<IProjectModelFilter>;
+  locale?: InputMaybe<ISiteLocale>;
+  orderBy?: InputMaybe<Array<InputMaybe<IProjectModelOrderBy>>>;
 };
 
 /** The query root for this schema */
@@ -2301,6 +2506,40 @@ export type ISitelayoutRecord_SeoMetaTagsArgs = {
   locale?: InputMaybe<ISiteLocale>;
 };
 
+/** Specifies how to filter by status */
+export type IStatusFilter = {
+  /** Search the record with the specified status */
+  eq?: InputMaybe<IItemStatus | `${IItemStatus}`>;
+  /** Search records with the specified statuses */
+  in?: InputMaybe<Array<InputMaybe<IItemStatus | `${IItemStatus}`>>>;
+  /** Exclude the record with the specified status */
+  neq?: InputMaybe<IItemStatus | `${IItemStatus}`>;
+  /** Search records without the specified statuses */
+  notIn?: InputMaybe<Array<InputMaybe<IItemStatus | `${IItemStatus}`>>>;
+};
+
+/** Specifies how to filter Single-line string fields */
+export type IStringFilter = {
+  /** Search for records with an exact match */
+  eq?: InputMaybe<Scalars["String"]["input"]>;
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records that equal one of the specified values */
+  in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<IStringMatchesFilter>;
+  /** Exclude records with an exact match */
+  neq?: InputMaybe<Scalars["String"]["input"]>;
+  /** Filter records that do not equal one of the specified values */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<IStringMatchesFilter>;
+};
+
 export type IStringMatchesFilter = {
   caseSensitive?: InputMaybe<Scalars["BooleanType"]["input"]>;
   pattern: Scalars["String"]["input"];
@@ -2314,6 +2553,20 @@ export type ITag = {
   tag: Scalars["String"]["output"];
 };
 
+/** Specifies how to filter text fields */
+export type ITextFilter = {
+  /** Filter records with the specified field defined (i.e. with any value) or not [DEPRECATED] */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with the specified field set as blank (null or empty string) */
+  isBlank?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with the specified field present (neither null, nor empty string) */
+  isPresent?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records based on a regular expression */
+  matches?: InputMaybe<IStringMatchesFilter>;
+  /** Exclude records based on a regular expression */
+  notMatches?: InputMaybe<IStringMatchesFilter>;
+};
+
 /** Specifies how to filter by upload type */
 export type ITypeFilter = {
   /** Search uploads with the specified type */
@@ -2324,6 +2577,24 @@ export type ITypeFilter = {
   neq?: InputMaybe<IUploadType | `${IUploadType}`>;
   /** Search uploads without the specified types */
   notIn?: InputMaybe<Array<InputMaybe<IUploadType | `${IUploadType}`>>>;
+};
+
+/** Specifies how to filter by update datetime */
+export type IUpdatedAtFilter = {
+  /** Filter records with a value that's within the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  eq?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with the specified field defined (i.e. with any value) or not */
+  exists?: InputMaybe<Scalars["BooleanType"]["input"]>;
+  /** Filter records with a value that's strictly greater than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's greater than or equal to than the one specified. Seconds and milliseconds are truncated from the argument. */
+  gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's less than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's less or equal than the one specified. Seconds and milliseconds are truncated from the argument. */
+  lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Filter records with a value that's outside the specified minute range. Seconds and milliseconds are truncated from the argument. */
+  neq?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
 /** Specifies how to filter by default alt */
@@ -2672,6 +2943,31 @@ export type IFocalPoint = {
   y: Scalars["FloatType"]["output"];
 };
 
+export type IAllProjectsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type IAllProjectsQuery = {
+  __typename?: "Query";
+  allProjects: Array<{
+    __typename?: "ProjectRecord";
+    mainDescription?: string | null;
+    id: string;
+    roleSkills?: unknown | null;
+    projectName?: string | null;
+    shortDescription?: string | null;
+    techStack?: unknown | null;
+    previewImages: Array<{
+      __typename?: "FileField";
+      url: string;
+      alt?: string | null;
+    }>;
+    heroImage?: {
+      __typename?: "FileField";
+      url: string;
+      alt?: string | null;
+    } | null;
+  }>;
+};
+
 export type IContactpageQueryVariables = Exact<{ [key: string]: never }>;
 
 export type IContactpageQuery = {
@@ -2802,6 +3098,26 @@ export type ISiteLayoutQuery = {
   } | null;
 };
 
+export const AllProjectsDocument = gql`
+  query AllProjects {
+    allProjects {
+      previewImages {
+        url
+        alt
+      }
+      heroImage {
+        url
+        alt
+      }
+      mainDescription
+      id
+      roleSkills
+      projectName
+      shortDescription
+      techStack
+    }
+  }
+`;
 export const ContactpageDocument = gql`
   query Contactpage {
     contactpage {
@@ -2930,6 +3246,20 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
+    AllProjects(
+      variables?: IAllProjectsQueryVariables,
+      requestHeaders?: GraphQLClientRequestHeaders
+    ): Promise<IAllProjectsQuery> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.request<IAllProjectsQuery>(AllProjectsDocument, variables, {
+            ...requestHeaders,
+            ...wrappedRequestHeaders,
+          }),
+        "AllProjects",
+        "query"
+      );
+    },
     Contactpage(
       variables?: IContactpageQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders

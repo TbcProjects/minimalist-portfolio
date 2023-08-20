@@ -44,6 +44,14 @@ export const textStyles = defineTextStyles({
       fontFamily: "body",
     },
   },
+  inputLabel: {
+    value: {
+      fontSize: "13px",
+      fontWeight: "bold",
+      lineHeight: "30px",
+      fontFamily: "body",
+    },
+  },
   button: {
     value: {
       fontSize: "12px",

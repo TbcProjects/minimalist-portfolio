@@ -198,7 +198,7 @@ type PropertyValueTypes  = {
 	srOnly: boolean;
 	debug: boolean;
 	colorPalette: string;
-	textStyle: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl" | "h1" | "h2" | "h3" | "bodyLg" | "bodySm" | "button";
+	textStyle: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl" | "h1" | "h2" | "h3" | "bodyLg" | "bodySm" | "inputLabel" | "button";
 	layerStyle: "primaryButton" | "secondaryButton" | "darkBlueOnWhite";
 }
 

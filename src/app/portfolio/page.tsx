@@ -1,10 +1,23 @@
-import Link from 'next/link'
+import { fetchAllProjects } from "@utils/fetchDato";
 
-export default function PortfolioPage() {
+import { IAllProjectsQuery, IProjectRecord } from "@typesDef/dato";
+
+import ProjectList from "@components/sections/ProjectList";
+
+export type IAllProjectsContent = NonNullable<IAllProjectsQuery>["allProjects"];
+
+export default async function PortfolioPage() {
+  const data = await fetchAllProjects();
+
+  const allProjects = data?.allProjects;
+
+  /**
+   * @todo - create ProjectList component
+   */
+
   return (
     <div>
-      <h1>Portfolio</h1>
-      <Link href='/'>Back to home</Link>
+      <ProjectList projects={allProjects as IAllProjectsContent} />;
     </div>
   );
 }

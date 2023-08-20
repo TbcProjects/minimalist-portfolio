@@ -3,6 +3,7 @@ import {
   ISiteLayoutQuery,
   IHomepageQuery,
   IContactpageQuery,
+  IAllProjectsQuery,
 } from "@typesDef/dato";
 
 export async function fetchLayoutData() {
@@ -33,4 +34,14 @@ export async function fetchContactpageData() {
   }
 
   return contactpageData;
+}
+
+export async function fetchAllProjects() {
+  const allProjects: IAllProjectsQuery = await configureSdk().AllProjects();
+
+  if (!allProjects) {
+    return null;
+  }
+
+  return allProjects;
 }
